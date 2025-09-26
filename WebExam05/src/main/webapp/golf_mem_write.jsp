@@ -67,7 +67,7 @@
 			<tr>
 				<td>회원번호</td>
 				<td>
-					<input type="text" name="gno">	
+					<input type="text" name="gno" readonly>	
 				</td>
 			</tr>
 			<tr>
