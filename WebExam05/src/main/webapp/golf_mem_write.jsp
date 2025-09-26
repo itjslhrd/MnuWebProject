@@ -16,13 +16,30 @@
 	</style>
 	<script>
 		function golfFrm_send(){
+			
 			golfFrm.submit();//전송하라
 		}
+		
 		function golfFrm_reset(){
 			alert("모든 정보를 지우고 다시 입력합니다");
 			golfFrm.reset();
 			golfFrm.name.focus();
 		}	
+		
+		function mem_check(){
+			golfFrm.gno.value=golfFrm.gname.value;
+		}
+		
+		function price_check(){
+			var str = golfFrm.glecture.value.split(",");
+			alert(str[0] +","+str[1]);
+			if(golfFrm.gno.value>=20000){
+				golfFrm.gprice.value = str[1] * 0.5;
+			}else{
+				golfFrm.gprice.value = str[1];
+			}
+			golfFrm.code.value=str[0];
+		}
 	</script>
 </head>
 <body>
@@ -37,7 +54,7 @@
 			</tr>
 			<tr>
 				<td>회원명</td>
-				<td><select name="gname" >
+				<td><select name="gname" onchange="mem_check()">
 						<option>회원을 선택하세요</option>
 						<option value="10001">[10001] 김회원</option>
 						<option value="10002">[10002] 오회원</option>
@@ -69,13 +86,14 @@
 			<tr>
 				<td>강의선택</td>
 				<td>
-					<select name="glecture">
+					<select name="glecture" onchange="price_check()">
 						<option>강의을 선택하세요</option>
-						<option value="100">[100] 초급반</option>
-						<option value="200">[200] 중급반</option>
-						<option value="300">[300] 고급반</option>
-						<option value="400">[400] 심화반</option>
+						<option value="100,100000">[100] 초급반</option>
+						<option value="200,200000">[200] 중급반</option>
+						<option value="300,300000">[300] 고급반</option>
+						<option value="400,400000">[400] 심화반</option>
 					</select>
+					<input type="hidden" name="code">
 				</td>
 			</tr>
 			<tr>
