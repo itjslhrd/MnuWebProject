@@ -50,10 +50,11 @@
 	//비번입력 후 키보드 Enter 처리
 	function passChk1(){
 		if(event.keyCode==13){
-			joinForm.repass.focus();
+			joinForm.repass.focus();//커서이동
 			return;
 		}
 	}
+	
 	//비번확인 onFocusOut
 	function passChk2(){
 		if(joinForm.pass.value != joinForm.repass.value){
