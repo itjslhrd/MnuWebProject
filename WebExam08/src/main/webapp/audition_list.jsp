@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.*, java.util.*" %>
+
+<%
+	ArtistDAO dao = new ArtistDAO();
+	List<ArtistDTO> list = dao.artistList();
+
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,14 +34,20 @@
 			<td>특기</td>
 			<td>소속사</td>
 		</tr>
+<%
+	for(ArtistDTO dto : list){
+%>		
 		<tr>
-			<td>A001</th>
-			<td>김스타</td>
-			<td>1997년01월01일</td>
-			<td>여성</td>
-			<td>댄스</td>
-			<td>A엔터테인먼트</td>
+			<td><%= dto.getArtist_id() %></th>
+			<td><%= dto.getArtist_name() %></td>
+			<td><%= dto.getArtist_birth() %></td>
+			<td><%= dto.getArtist_gender() %></td>
+			<td><%= dto.getTalent() %></td>
+			<td><%= dto.getAgency() %></td>
 		</tr>
+<%
+	}
+%>		
 	</table>
 
 </body>

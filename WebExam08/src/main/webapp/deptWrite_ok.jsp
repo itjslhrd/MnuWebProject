@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.*" %>    
     
 <%
 	request.setCharacterEncoding("utf-8");
@@ -8,19 +9,40 @@
 	String dname = request.getParameter("dname");
 	String loc = request.getParameter("loc");
 	
-	//테스트
+	DeptDTO dto = new DeptDTO();
+	dto.setDno(dno);
+	dto.setDname(dname);
+	dto.setLoc(loc);
+
+	out.print("dno : " + dno + "<br>");
+	out.print("dname : " + dname + "<br>");
+	out.print("loc: " + dto.getLoc() + "<br>");
+	
+	DeptDAO dao = new DeptDAO();
+	int row = dao.deptWrite(dto);
+	
+	//dto.setDno(Integer.parseInt(request.getParameter("dno")));
+	
+/*
 	out.print("dno : " + dno + "<br>");
 	out.print("dname : " + dname + "<br>");
 	out.print("loc: " + loc + "<br>");
-
+*/
+	if(row==1){
 %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+	<script>
+		//alert("등록 성공");
+		//location.href="index.jsp";
+	</script>
 
-</body>
-</html>
+<%
+	}else{
+%>
+	<script>
+		//alert("등록실패");
+		//history.back();
+	</script>
+
+<%
+	}
+%>

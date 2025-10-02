@@ -36,7 +36,7 @@ public class DeptDAO {
 			//커넥션 연결
 			conn = getConn();
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();//select
 			while(rs.next()) {
 				DeptDTO dto = new DeptDTO();
 				dto.setDno(rs.getInt("dno"));
@@ -52,6 +52,44 @@ public class DeptDAO {
 		return dList;
 	}
 	
+	//DB 저장 메소드
+	public int deptWrite(DeptDTO dto) {
+		//반환타입
+		int row=0;
+		//쿼리
+		String sql="insert into dept(dno,dname,loc)\r\n"
+				+ "			values(?, ?, ?)";
+		
+		try {
+			//커넥션
+			conn = getConn();
+			//명령문
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getDno());
+			pstmt.setString(2, dto.getDname());
+			pstmt.setString(3, dto.getLoc());
+			
+			row = pstmt.executeUpdate();//insert, update, delete
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return row;
+	}
 	
+	public int deptWrite(int dno, String dname, String loc) {
+		//반환타입
+		int row=0;
+		//쿼리
+		String sql="";
+		
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return row;
+		
+	}
 	
 }
