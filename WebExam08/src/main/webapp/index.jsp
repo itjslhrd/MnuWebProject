@@ -10,5 +10,8 @@
 	<h1>WebExam08</h1>
 	<h3><a href="deptList.jsp">전체목록</a></h3>
 	<h3><a href="deptWrite.jsp">등록</a></h3>
+	<h3><a href="audition_write.jsp">오디션등록</a></h3>
+	<h3><a href="audition_list.jsp">참가자목록</a></h3>
+	
 </body>
 </html>
