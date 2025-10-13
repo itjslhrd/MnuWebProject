@@ -3,10 +3,8 @@
 <%@ page import="model.*, java.util.*" %>
 
 <%
-p
-
 	AuditionDAO dao = new AuditionDAO();
-	List<AuditionDTO> list = dao.artistList();
+	List<AuditionDTO> list = dao.auditionList();
 %>    
 <!DOCTYPE html>
 <html>
@@ -36,7 +34,7 @@ p
 			<td>소속사</td>
 		</tr>
 <%
-for(AuditionDTO dto : list){
+	for(AuditionDTO dto : list){
 %>		
 		<tr>
 			<td><%= dto.getArtist_id() %></th>
