@@ -28,11 +28,13 @@ public class StudentDAO {
 	//이름을 이용한 검색
 	public List<StudentDTO> studentNameSearch(String name){
 		List<StudentDTO> sList = new ArrayList();
-		String sql="select * from tbl_student_001 where name=?";
+		String sql="select * from tbl_student_001 where name = ?";
+		//String sql2="select * from tbl_student_001 where name like ?";
 		try {
 			conn = getConn();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, name);
+			//pstmt.setString(1, "%"+name+"%");
 			
 			rs = pstmt.executeQuery();
 			StudentDTO dto = new StudentDTO();
