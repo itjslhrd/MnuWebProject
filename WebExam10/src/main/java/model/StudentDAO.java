@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDAO {
 	Connection conn = null;
@@ -23,5 +25,32 @@ public class StudentDAO {
 		}
 		return conn;
 	}
-
+	//이름을 이용한 검색
+	public List<StudentDTO> studentNameSearch(String name){
+		List<StudentDTO> sList = new ArrayList();
+		String sql="select * from tbl_student_001 where name=?";
+		try {
+			conn = getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			
+			rs = pstmt.executeQuery();
+			StudentDTO dto = new StudentDTO();
+			while(rs.next()) {
+				dto.setHakbun(rs.getString("hakbun"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone1(rs.getString("phone1"));
+				dto.setPhone2(rs.getString("phone2"));
+				dto.setPhone3(rs.getString("phone3"));
+				dto.setGender(rs.getString("gender"));
+				dto.setBirth(rs.getString("birth"));
+				dto.setRegdate(rs.getString("regdate"));
+				
+				sList.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return sList;
+	}
 }
