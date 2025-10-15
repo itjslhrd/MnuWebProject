@@ -69,4 +69,51 @@ public class ProductDAO {
 		}
 		return row;
 	}
+	
+	//수정폼 사용할 데이터 검색
+	public ProductDTO productSearch(String p_code) {
+		ProductDTO dto = new ProductDTO();
+		String sql="select * from tbl_product_202002 where p_code=?";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_code);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto.setP_code(rs.getString("p_code"));
+				dto.setP_name(rs.getString("p_name"));
+				dto.setP_size(rs.getInt("p_size"));
+				dto.setP_incost(rs.getInt("p_incost"));
+				dto.setP_outcost(rs.getInt("p_outcost"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return dto;
+	}
+	//수정처리
+	public int productModify(ProductDTO dto) {
+		int row=0;
+		String sql="update tbl_product_202002 set p_name=?, p_size=?, p_incost=?, "
+				+ "p_outcost=?, p_update=curdate()	where p_code=?";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getP_name());
+			pstmt.setInt(2, dto.getP_size());
+			pstmt.setInt(3, dto.getP_incost());
+			pstmt.setInt(4, dto.getP_outcost());
+			pstmt.setString(5, dto.getP_code());
+			
+			row = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+		return row;
+	}
 }

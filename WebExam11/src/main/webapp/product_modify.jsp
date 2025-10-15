@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.*" %>    
 <%
 	String p_code = request.getParameter("p_code");
-
+	ProductDAO dao = ProductDAO.getInstance();
+	
+	ProductDTO dto = dao.productSearch(p_code);
 %>    
 <!DOCTYPE html>
 <html>
@@ -39,28 +42,28 @@
 			</tr>
 			<tr>
 				<td>제품코드</th>
-				<td><input type="text" name="p_code" value="<%= p_code %>"></td>
+				<td><input type="text" name="p_code" readonly value="<%= dto.getP_code() %>"></td>
 			</tr>
 			<tr>
 				<td>제품명</th>
-				<td><input type="text" name="p_name"></td>
+				<td><input type="text" name="p_name" value="<%= dto.getP_name() %>"></td>
 			</tr>
 			<tr>
 				<td>사이즈</td>
 				<td>
-					<input type="text" name="t_size">
+					<input type="text" name="p_size" value="<%= dto.getP_size() %>">
 				</td>
 			</tr>
 			<tr>
 				<td>매입단가</td>
 				<td>
-					<input type="text" name="p_incost">
+					<input type="text" name="p_incost" value="<%= dto.getP_incost() %>">
 				</td>
 			</tr>
 			<tr>
 				<td>매출단가</td>
 				<td>
-					<input type="text" name="p_outcost">
+					<input type="text" name="p_outcost" value="<%= dto.getP_outcost() %>">
 				</td>
 			</tr>			
 			<tr>
