@@ -40,8 +40,8 @@
 		for(ProductDTO dto : list){		
 %>		
 		<tr>
-			<td class="text_center"><%= dto.getP_code() %></td>
-			<td class="text_center"><%= dto.getP_name() %></td>
+			<td class="text_center"><a href="product_modify.jsp?p_code=<%= dto.getP_code() %>"><%= dto.getP_code() %></a></td>
+			<td class="text_center"><a href="product_modify.jsp?p_code=<%= dto.getP_code() %>"><%= dto.getP_name() %></a></td>
 			<td class="text_center"><%= dto.getP_size() %>mm</td>
 			<td class="text_right"><%= String.format("￦%,d",dto.getP_incost()) %></td>
 			<td class="text_right"><%= String.format("￦%,d",dto.getP_outcost()) %></td>
