@@ -46,4 +46,27 @@ public class ProductDAO {
 		}
 		return pList;
 	}
+	//입출고 등록
+	public int productInout(InoutDTO dto) {
+		int row=0;
+		String sql="insert into tbl_inout_202002(t_no,p_code,t_type,t_cnt,t_date,c_code) "
+				+ "values(?,?,?,?,?,?)";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getT_no());
+			pstmt.setString(2, dto.getP_code());
+			pstmt.setString(3, dto.getT_type());
+			pstmt.setInt(4, dto.getT_cnt());
+			pstmt.setString(5, dto.getT_date());
+			pstmt.setString(6, dto.getC_code());
+			
+			row = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+		return row;
+	}
 }
