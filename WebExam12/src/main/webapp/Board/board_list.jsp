@@ -46,7 +46,7 @@ if(list.size() != 0){
 %>		
 		<tr>
 			<td><%= dto.getIdx() %></td>
-			<td><%= dto.getSubject() %></td>
+			<td><a href="board_view.jsp?idx=<%= dto.getIdx() %>"><%= dto.getSubject() %></a></td>
 			<td><%= dto.getName() %></td>
 			<td><%= dto.getRegdate() %></td>
 			<td><%= dto.getReadcnt() %></td>

@@ -67,11 +67,67 @@ public class BoardDAO {
 		return bList;
 	}
 	//게시글 등록
-	
+	public int boardWrite(BoardDTO01 dto) {
+		int row=0;
+		String sql="insert into tbl_board_01(name, subject, contents, pass, regdate) "
+				+ "values(?,?,?,?,now())";//curdate():년월일
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getSubject());
+			pstmt.setString(3, dto.getContents());
+			pstmt.setString(4, dto.getPass());
+			
+			row = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+		return row;
+	}
 	//기본키를 이용한 게시글 검색(view, modify사용)
+	public BoardDTO01 boardSearch(int idx){
+		BoardDTO01 dto = new BoardDTO01();
+		String sql = "select * from tbl_board_01 where idx = ?";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto.setIdx(rs.getInt("idx"));
+				dto.setName(rs.getString("name"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContents(rs.getString("contents"));
+				dto.setReadcnt(rs.getInt("readcnt"));
+				dto.setRegdate(rs.getString("regdate"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return dto;
+	}
 	
 	//게시글 조회수 증가
-	
+	public void boardReadCnt(int idx) {
+		String sql="update tbl_board_01 set readcnt=readcnt+1 "
+				+ "	where idx = ?";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
 	//게시글 수정
 
 	//게시글 삭제
