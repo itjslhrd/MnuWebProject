@@ -116,4 +116,32 @@ public class ProductDAO {
 		}
 		return row;
 	}
+
+	// 입출고 조회 메소드
+	public List<InoutDTO> productInoutList(){
+		List<InoutDTO> pList = new ArrayList();
+		String sql="select * from tbl_inout_202002";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				InoutDTO dto = new InoutDTO();
+				dto.setT_no(rs.getString("t_no"));
+				dto.setP_code(rs.getString("p_code"));
+				dto.setT_type(rs.getString("t_type"));
+				dto.setT_cnt(rs.getInt("t_cnt"));
+				dto.setT_date(rs.getString("t_date"));
+				dto.setC_code(rs.getString("c_code"));
+				
+				pList.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return pList;
+	}
+
 }
