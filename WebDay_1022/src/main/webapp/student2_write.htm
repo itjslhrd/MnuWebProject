@@ -13,65 +13,65 @@
 	</style>
 </head>
 <body>
-	<form name="" method="" action="">
+	<form name="student2" method="post" action="student2Write.do">
 		<table>
 			<tr>
 				<td colspan="2" class="title">학생 정보 등록</td>
 			</tr>
 			<tr>
 				<td>학번</th>
-				<td><input type="text" name=""></td>
+				<td><input type="text" name="hakbun"></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="" ></td>
+				<td><input type="text" name="name" ></td>
 			</tr>
 			<tr>
 				<td>전화</td>
 				<td>
-					<select name="">
-						<option value="">010</option>
-						<option value="">02</option>
-						<option value="">031</option>
-						<option value="">032</option>
-						<option value="">033</option>
-						<option value="">0</option>
+					<select name="phon1">
+						<option value="010">010</option>
+						<option value="02">02</option>
+						<option value="031">031</option>
+						<option value="032">032</option>
+						<option value="033">033</option>
+						<option value="042">042</option>
 					</select>-
-					<input type="text" name="" size=4>-
-					<input type="text" name="" size=4>
+					<input type="text" name="phone2" size=4>-
+					<input type="text" name="phone3" size=4>
 				</td>
 			</tr>
 			<tr>
 				<td>성별</td>
 				<td>
-					<input type="radio" name="" >남성
-					<input type="radio" name="" >여성
+					<input type="radio" name="gender" value="M" >남성
+					<input type="radio" name="gender" value="F">여성
 				</td>
 			</tr>
 			<tr>
 				<td>생년월일</td>
 				<td>
-					<select name="">
-						<option value="">1990</option>
-						<option value="">1995</option>
-						<option value="">2000</option>
-						<option value="">2005</option>
-						<option value="">2010</option>
-						<option value="">2017</option>
+					<select name="year">
+						<option value="1990">1990</option>
+						<option value="1995">1995</option>
+						<option value="2000">2000</option>
+						<option value="2005">2005</option>
+						<option value="2010">2010</option>
+						<option value="2017">2017</option>
 					</select>년
-					<select name="">
-						<option value="">01</option>
-						<option value="">02</option>
-						<option value="">03</option>
-						<option value="">12</option>
+					<select name="month">
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="12">12</option>
 					</select>월
-					<select name="">
-						<option value="">01</option>
-						<option value="">02</option>
-						<option value="">03</option>
-						<option value="">10</option>
-						<option value="">20</option>
-						<option value="">31</option>
+					<select name="day">
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">10</option>
+						<option value="20">20</option>
+						<option value="31">31</option>
 					</select>일
 					
 				</td>
@@ -82,7 +82,7 @@
 			</tr>			
 			<tr>
 				<td colspan="2" class="btn">
-					<input type="button" value="등록하기" onclick="student_send()">
+					<input type="submit" value="등록하기" onclick="student_send()">
 					<input type="button" value="다시쓰기" onclick="student_reset()">
 				</td>
 			</tr>

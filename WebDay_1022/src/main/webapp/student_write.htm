@@ -13,52 +13,52 @@
 	</style>
 </head>
 <body>
-	<form name="" method="" action="">
+	<form name="student" method="post" action="studentWrite.do">
 		<table>
 			<tr>
 				<td colspan="2" class="title">학생등록</td>
 			</tr>
 			<tr>
 				<td>학년</th>
-				<td><input type="text" name="" size="5"></td>
+				<td><input type="text" name="syear" size="5"></td>
 			</tr>
 			<tr>
 				<td>반</td>
-				<td><input type="text" name="" size="5"></td>
+				<td><input type="text" name="sclass" size="5"></td>
 			</tr>
 			<tr>
 				<td>번호</td>
-				<td><input type="text" name="" size="5"></td>
+				<td><input type="text" name="sno" size="5"></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name=""></td>
+				<td><input type="text" name="sname"></td>
 			</tr>
 			<tr>
 				<td>생년월일</td>
 				<td>
-					<input type="text" name="" size="4">년
-					<input type="text" name="" size="2">월
-					<input type="text" name="" size="3">일
+					<input type="text" name="year" size="4">년
+					<input type="text" name="month" size="2">월
+					<input type="text" name="day" size="3">일
 				</td>
 			</tr>
 			<tr>
 				<td>성별</td>
 				<td>
-					<input type="radio" name="" >남성
-					<input type="radio" name="" >여성
+					<input type="radio" name="gender" value="M">남성
+					<input type="radio" name="gender" value="F">여성
 				</td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="" size="3">-
-					<input type="text" name="" size="3">-
-					<input type="text" name="" size="3">
+				<td><input type="text" name="tel1" size="3">-
+					<input type="text" name="tel2" size="3">-
+					<input type="text" name="tel3" size="3">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" class="btn">
-					<input type="button" value="학생등록">
+					<input type="submit" value="학생등록">
 					<input type="button" value="다시쓰기">
 				</td>
 			</tr>
