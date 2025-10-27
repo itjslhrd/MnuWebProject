@@ -3,6 +3,8 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import util.DBManager;
 
@@ -36,7 +38,7 @@ public class StudentDAO {
 			pstmt.setString(7, dto.getGender());//각 ? 에 값을 대입
 			pstmt.setString(8, dto.getRegdate());//각 ? 에 값을 대입
 			
-			//실행
+			//실행(insert, update, delete)
 			row = pstmt.executeUpdate();//DB에 저장
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -44,6 +46,42 @@ public class StudentDAO {
 			DBManager.close(conn, pstmt);
 		}
 		return row;
+	}
+	//학생전체 목록 출력 메소드
+	public List<StudentDTO> studentList(){
+		//반환값
+		List<StudentDTO> list = new ArrayList();	
+		//쿼리
+		String sql="select * from tbl_student_001";
+		
+		try {
+			//커넥션
+			conn = DBManager.getConn();
+			//명령문
+			pstmt = conn.prepareStatement(sql);
+			
+			//결과 set (select)
+			rs = pstmt.executeQuery();
+			
+			//list에 추가
+			while(rs.next()) {//존재하면
+				StudentDTO dto = new StudentDTO();
+				dto.setHakbun(rs.getString("hakbun"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone1(rs.getString("phone1"));
+				dto.setPhone2(rs.getString("phone2"));
+				dto.setPhone3(rs.getString("phone3"));
+				dto.setBirth(rs.getString("birth"));
+				dto.setGender(rs.getString("gender"));
+				dto.setRegdate(rs.getString("regdate"));
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return list;
 	}
 	
 }

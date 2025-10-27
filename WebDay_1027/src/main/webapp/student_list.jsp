@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +17,7 @@
 	.nav ul,li{float:left; padding:0 20px; text-align:center;}
 	.content {background-color:#E6E6E6; padding:16px;}
 	.title {text-align:center;padding:22px;}
-	.content table{width:500px;margin:0 auto;}
+	.content table{width:700px;margin:0 auto;}
 	.content table th, td{border:1px solid #bbb;}
 	.content table .btn_group {text-align:center;}
 	.footer {padding:16px 0; text-align:center; background-color:#0040FF;}
@@ -38,13 +43,27 @@
 	<div class="section">
 		<section>
 			<div class="content">
-				<h2 class="title">과정평가형 자격 CBQ</h2>
-					<br>국가직무능력표준(NCS:National Competency Standards)으로 설계된 교육*훈련과정을 체계적으로 이수하고 내외부 평가를 거쳐 취득하는 국가기술자격입니다.<br>
-					<br>산업현장 중심의 교육평가로 더 커지는 능력!<br>
-					<br>알고 있는 것에 할 수 있는 것을 더하는<br>
-					<br>과정평가형 자격은<br>
-					<br>현장 중심형 인재육성을 지원 합니다.<br>
-	
+				<h2 class="title">학생 정보 조회</h2>
+					<table>
+						<tr>
+							<td>학번</td>
+							<td>이름</td>
+							<td>전화</td>
+							<td>생년월일</td>
+							<td>성별</td>
+							<td>등록일자</td>
+						</tr>
+			<c:forEach var="dto" items="${list}">			
+						<tr>
+							<td>${dto.hakbun}</td>
+							<td>${dto.name}</td>
+							<td>${dto.phone1}-${dto.phone2}-${dto.phone3}</td>
+							<td>${dto.birth}</td>
+							<td>${dto.gender}</td>
+							<td>${dto.regdate}</td>
+						</tr>
+			</c:forEach>			
+					</table>
 			</div>
 		</section>
 	</div>
