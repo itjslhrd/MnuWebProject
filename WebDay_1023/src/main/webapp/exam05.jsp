@@ -18,7 +18,9 @@
 			<td colspan="5">등록된 자료가 없음</td>
 		</tr>
 </c:if>		
+<c:set var="tot" value="0"></c:set>
 <c:forEach var="dto" items="${pList}">
+	<c:set var="tot" value="${tot + dto.score}" />
 		<tr>
 			<td>${dto.bun}</td>
 			<td>${dto.name}</td>
@@ -37,7 +39,11 @@
 				</c:choose>
 			</td>
 		</tr>
-</c:forEach>		
+</c:forEach>	
+		<tr>
+			<td colspan="3">합계</td><td colspan="2">${tot}</td>
+		</tr>
+	
 	</table>
 </body>
 </html>
