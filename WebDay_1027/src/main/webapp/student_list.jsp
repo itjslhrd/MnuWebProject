@@ -58,7 +58,7 @@
 							<td>${dto.hakbun}</td>
 							<td>${dto.name}</td>
 							<td>${dto.phone1}-${dto.phone2}-${dto.phone3}</td>
-							<td>${dto.birth}</td>
+							<td>${dto.birth.sustring(0,4)}</td>
 							<td>${dto.gender}</td>
 							<td>${dto.regdate}</td>
 						</tr>
