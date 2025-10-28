@@ -1,9 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>    
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +12,39 @@
 	.nav ul,li{float:left; padding:0 20px; text-align:center;}
 	.content {background-color:#E6E6E6; padding:16px;}
 	.title {text-align:center;padding:22px;}
-	.content table{width:700px;margin:0 auto;}
+	.content table{width:500px;margin:0 auto;}
 	.content table th, td{border:1px solid #bbb;}
 	.content table .btn_group {text-align:center;}
 	.footer {padding:16px 0; text-align:center; background-color:#0040FF;}
 </style>
+<script>
+	function score_send(){
+		if(score.hakbun.value==""){
+			alert("학번이 비어있습니다");
+			score.hakbun.focus();
+			return;
+		}
+		if(score.kor.value==""){
+			alert("국어점수가 비어있습니다");
+			score.kor.focus();
+			return;
+		}
+		if(score.eng.value==""){
+			alert("영어점수가 비어있습니다");
+			score.eng.focus();
+			return;
+		}
+		if(score.mat.value==""){
+			alert("수학점수가 비어있습니다");
+			score.mat.focus();
+			return;
+		}
+		
+		alert("학생 성적를 등록합니다.");
+		score.submit();// 전송시작
+	}
+
+</script>
 </head>
 <body>
 	<div class="header">
@@ -44,32 +66,39 @@
 	<div class="section">
 		<section>
 			<div class="content">
-				<h2 class="title">학생 정보 조회</h2>
+				<h2 class="title">학생 성적 등록</h2>
+				<form name="score" method="post" action="score_write_ok.do">
 					<table>
 						<tr>
-							<td>학번</td>
-							<td>이름</td>
-							<td>전화</td>
-							<td>생년월일</td>
-							<td>성별</td>
-							<td>등록일자</td>
+							<td>학번</th>
+							<td><input type="text" name="hakbun"></td>
 						</tr>
-			<c:forEach var="dto" items="${list}">			
 						<tr>
-							<td>${dto.hakbun}</td>
-							<td>${dto.name}</td>
-							<td>${dto.phone1}-${dto.phone2}-${dto.phone3}</td>
-							<td>${fn:substring(dto.birth,0,4)}년 ${fn:substring(dto.birth,4,6)}월 ${fn:substring(dto.birth,6,8)}일</td>
-					<c:if test="${dto.gender=='M' }">		
-							<td>남자</td>
-					</c:if>
-					<c:if test="${dto.gender=='F' }">		
-							<td>여자</td>
-					</c:if>
-							<td>${dto.regdate}</td>
+							<td>국어</td>
+							<td><input type="text" name="kor" ></td>
 						</tr>
-			</c:forEach>			
+						<tr>
+							<td>영어</td>
+							<td><input type="text" name="eng" ></td>
+						</tr>
+						<tr>
+							<td>수학</td>
+							<td><input type="text" name="mat" ></td>
+						</tr>
+						
+						<tr>
+							<td colspan="2" class="btn_group">
+								<input type="button" value="등록하기" onclick="score_send()">
+								<input type="button" value="다시쓰기" onclick="score_reset()">
+							</td>
+						</tr>
 					</table>
+				</form>
+
+
+
+
+	
 			</div>
 		</section>
 	</div>

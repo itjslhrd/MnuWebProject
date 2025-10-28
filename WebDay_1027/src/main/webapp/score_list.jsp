@@ -1,4 +1,9 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +18,7 @@
 	.nav ul,li{float:left; padding:0 20px; text-align:center;}
 	.content {background-color:#E6E6E6; padding:16px;}
 	.title {text-align:center;padding:22px;}
-	.content table{width:500px;margin:0 auto;}
+	.content table{width:700px;margin:0 auto;}
 	.content table th, td{border:1px solid #bbb;}
 	.content table .btn_group {text-align:center;}
 	.footer {padding:16px 0; text-align:center; background-color:#0040FF;}
@@ -26,10 +31,10 @@
 			<div class="nav">
 				<nav>
 					<ul>
-						<li><a href="student_write.html">학생등록</a></li>
-						<li><a href="student_list.html">학생조회</a></li>
-						<li><a href="">성적등록</a></li>
-						<li><a href="">성적조회</a></li>
+						<li><a href="student_write.do">학생등록</a></li>
+						<li><a href="student_list.do">학생조회</a></li>
+						<li><a href="score_write.do">성적등록</a></li>
+						<li><a href="score_list.do">성적조회</a></li>
 						<li><a href="index.html">홈으로</a></li>
 					</ul>
 				</nav>			
@@ -39,8 +44,29 @@
 	<div class="section">
 		<section>
 			<div class="content">
-				<h2 class="title">학생 정보 조회</h2>
-	
+				<h2 class="title">학생 성적 조회</h2>
+					<table>
+						<tr>
+							<td>학번</td>
+							<td>국어</td>
+							<td>영어</td>
+							<td>수학</td>
+							<td>총점</td>
+							<td>평균</td>
+							<td>석차</td>
+						</tr>
+			<c:forEach var="dto" items="${list}">			
+						<tr>
+							<td>${dto.hakbun}</td>
+							<td>${dto.kor}</td>
+							<td>${dto.eng}</td>
+							<td>${dto.mat}</td>
+							<td>${dto.kor + dto.eng + dto.mat}</td>
+							<td>${(dto.kor+dto.eng+dto.mat)/3}</td>
+							<td></td>
+						</tr>
+			</c:forEach>						
+					</table>
 			</div>
 		</section>
 	</div>

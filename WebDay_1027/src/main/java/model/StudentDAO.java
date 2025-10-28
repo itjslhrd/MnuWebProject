@@ -83,5 +83,69 @@ public class StudentDAO {
 		}
 		return list;
 	}
+
+	// 등록 메소드 정의(등록, 수정, 삭제)
+	public int scoreWrite(ScoreDTO dto) {
+		//반환값
+		int row=0;
+		//쿼리문장
+		String sql="insert into tbl_score_001(hakbun,kor,eng,mat) "
+				+ " values(?,?,?,?)";
+		
+		//String sql="insert into tbl_student_001 values(?,?,?,?,?,?,?,?)";
+		
+		try {
+			//커넥션 연결
+			conn = DBManager.getConn();
+			//명령문 수행
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getHakbun());//각 ? 에 값을 대입
+			pstmt.setInt(2, dto.getKor());
+			pstmt.setInt(3, dto.getEng());
+			pstmt.setInt(4, dto.getMat());
+			
+			//실행(insert, update, delete)
+			row = pstmt.executeUpdate();//DB에 저장
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+		return row;
+	}
 	
+	//학생 성적 전체 목록 출력 메소드
+	public List<ScoreDTO> scoreList(){
+		//반환값
+		List<ScoreDTO> list = new ArrayList();	
+		//쿼리
+		String sql="select * from tbl_score_001";
+		
+		try {
+			//커넥션
+			conn = DBManager.getConn();
+			//명령문
+			pstmt = conn.prepareStatement(sql);
+			
+			//결과 set (select)
+			rs = pstmt.executeQuery();
+			
+			//list에 추가
+			while(rs.next()) {//존재하면
+				ScoreDTO dto = new ScoreDTO();
+				dto.setHakbun(rs.getString("hakbun"));
+				dto.setKor(rs.getInt("kor"));
+				dto.setEng(rs.getInt("eng"));
+				dto.setMat(rs.getInt("mat"));
+				
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+
 }
