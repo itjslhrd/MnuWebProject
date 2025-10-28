@@ -18,11 +18,21 @@
 	.nav ul,li{float:left; padding:0 20px; text-align:center;}
 	.content {background-color:#E6E6E6; padding:16px;}
 	.title {text-align:center;padding:22px;}
-	.content table{width:700px;margin:0 auto;}
+	.content table{width:300px;margin:0 auto;}
 	.content table th, td{border:1px solid #bbb;}
 	.content table .btn_group {text-align:center;}
 	.footer {padding:16px 0; text-align:center; background-color:#0040FF;}
 </style>
+<script>
+	function hakbun_search(){
+		if(hakbunForm.hakbun.value == ""){
+			alert("학번을 입력하세요");
+			hakbunForm.hakbun.focus();
+			return;
+		}
+		hakbunForm.submit();
+	}
+</script>
 </head>
 <body>
 	<div class="header">
@@ -45,30 +55,16 @@
 	<div class="section">
 		<section>
 			<div class="content">
-				<h2 class="title">학생 성적 조회</h2>
+				<h2 class="title">개인별 성적 조회</h2>
+					<form name="hakbunForm" method="post" action="student_score_list_ok.do">
 					<table>
 						<tr>
 							<td>학번</td>
-							<td>국어</td>
-							<td>영어</td>
-							<td>수학</td>
-							<td>총점</td>
-							<td>평균</td>
-							<td>석차</td>
+							<td><input type="text" name="hakbun"></td>
+							<td><input type="button" value="검색" onclick="hakbun_search()"></td>
 						</tr>
-			<c:forEach var="dto" items="${list}">	
-				<c:set var="rank" value="${rank+1}" />		
-						<tr>
-							<td>${dto.hakbun}</td>
-							<td>${dto.kor}</td>
-							<td>${dto.eng}</td>
-							<td>${dto.mat}</td>
-							<td>${dto.tot}</td>
-							<td>${dto.ave}</td>
-							<td>${rank}</td>
-						</tr>
-			</c:forEach>						
 					</table>
+					</form>
 			</div>
 		</section>
 	</div>

@@ -2,10 +2,24 @@ package model;
 
 public class ScoreDTO {
 	private String hakbun;
-	int kor;
-	int eng;
-	int mat;
+	private int kor;
+	private int eng;
+	private int mat;
+	private int tot;
+	private double ave;
 	
+	public int getTot() {
+		return tot;
+	}
+	public void setTot(int tot) {
+		this.tot = tot;
+	}
+	public double getAve() {
+		return ave;
+	}
+	public void setAve(double ave) {
+		this.ave = ave;
+	}
 	public String getHakbun() {
 		return hakbun;
 	}

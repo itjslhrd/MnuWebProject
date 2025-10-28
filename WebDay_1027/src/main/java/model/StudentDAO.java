@@ -119,7 +119,8 @@ public class StudentDAO {
 		//반환값
 		List<ScoreDTO> list = new ArrayList();	
 		//쿼리
-		String sql="select * from tbl_score_001";
+		String sql="select *, kor+eng+mat tot, round((kor+eng+mat)/3,2) ave \r\n"
+				+ "		from tbl_score_001 order by tot desc";
 		
 		try {
 			//커넥션
@@ -137,7 +138,8 @@ public class StudentDAO {
 				dto.setKor(rs.getInt("kor"));
 				dto.setEng(rs.getInt("eng"));
 				dto.setMat(rs.getInt("mat"));
-				
+				dto.setTot(rs.getInt("tot"));
+				dto.setAve(rs.getDouble("ave"));
 				list.add(dto);
 			}
 		}catch(Exception e) {
@@ -148,4 +150,39 @@ public class StudentDAO {
 		return list;
 	}
 
+	//학번을 이용한 학생 성적 조회
+	public ScoreDTO studentScoreList(String hakbun){
+		//반환값
+		ScoreDTO dto = new ScoreDTO();	
+		//쿼리
+		String sql="select *, kor+eng+mat tot, round((kor+eng+mat)/3,2) ave \r\n"
+				+ "		from tbl_score_001 where hakbun=?";
+		
+		try {
+			//커넥션
+			conn = DBManager.getConn();
+			//명령문
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hakbun);
+			
+			//결과 set (select)
+			rs = pstmt.executeQuery();
+			
+			//list에 추가
+			if(rs.next()) {//존재하면
+				dto.setHakbun(rs.getString("hakbun"));
+				dto.setKor(rs.getInt("kor"));
+				dto.setEng(rs.getInt("eng"));
+				dto.setMat(rs.getInt("mat"));
+				dto.setTot(rs.getInt("tot"));
+				dto.setAve(rs.getDouble("ave"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return dto;
+	}
+	
 }

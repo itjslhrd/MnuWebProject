@@ -54,10 +54,8 @@
 							<td>수학</td>
 							<td>총점</td>
 							<td>평균</td>
-							<td>석차</td>
 						</tr>
-			<c:forEach var="dto" items="${list}">	
-				<c:set var="rank" value="${rank+1}" />		
+			<c:if test="${dto.hakbun != null}">		
 						<tr>
 							<td>${dto.hakbun}</td>
 							<td>${dto.kor}</td>
@@ -65,9 +63,13 @@
 							<td>${dto.mat}</td>
 							<td>${dto.tot}</td>
 							<td>${dto.ave}</td>
-							<td>${rank}</td>
 						</tr>
-			</c:forEach>						
+			</c:if>	
+			<c:if test="${dto.hakbun == null}">		
+						<tr>
+							<td colspan="6">등록된 정보가 없음</td>
+						</tr>
+			</c:if>			
 					</table>
 			</div>
 		</section>

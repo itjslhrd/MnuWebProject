@@ -32,9 +32,10 @@
 				<nav>
 					<ul>
 						<li><a href="student_write.do">학생등록</a></li>
-						<li><a href="student_list.do">학생조회</a></li>
+						<li><a href="student_list.do">전체학생조회</a></li>
 						<li><a href="score_write.do">성적등록</a></li>
-						<li><a href="score_list.do">성적조회</a></li>
+						<li><a href="score_list.do">전체학생성적조회</a></li>
+						<li><a href="student_score_list.do">학생성적조회</a></li>
 						<li><a href="index.html">홈으로</a></li>
 					</ul>
 				</nav>			
