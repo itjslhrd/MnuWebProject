@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,27 @@
 	.content table .btn_group {text-align:center;}
 	.footer {padding:16px 0; text-align:center; background-color:#0040FF;}
 </style>
+<script>
+	function member_send(){
+		//유효성 검사
+		if(member.custno.value==""){
+			alert("회원번호가 비어있습니다");
+			member.custno.focus();
+			return;
+		}
+		if(member.custname.value==""){
+			alert("회원이름이 비어있습니다");
+			member.custname.focus();
+			return;
+		}
+		
+		member.submit();// 전송		
+	}
+	
+	function test(){
+		history.back();
+	}
+</script>
 </head>
 <body>
 	<div class="header">
@@ -25,8 +47,8 @@
 			<div class="nav">
 				<nav>
 					<ul>
-						<li><a href="member_write.html">회원등록</a></li>
-						<li><a href="member_list.html">회원목록조회</a></li>
+						<li><a href="member_write.do">회원등록</a></li>
+						<li><a href="member_list.do">회원목록조회</a></li>
 						<li><a href="member_sale.html">회원매출조회</a></li>
 						<li><a href="member_search.html">회원정보검색</a></li>
 						<li><a href="index.html">홈으로</a></li>
@@ -39,54 +61,54 @@
 		<section>
 			<div class="content">
 				<h2 class="title">회원 등록</h2>
-				<form name="" method="post" action="">
+				<form name="member" method="post" action="member_write.do">
 					<table>
 						<tr>
 							<td>회원번호(자동생성)</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="custno"></td>
 						</tr>
 						<tr>
 							<td>회원성명</td>
-							<td><input type="text" name="" ></td>
+							<td><input type="text" name="custname" ></td>
 						</tr>
 						<tr>
 							<td>회원전화</td>
 							<td>
-								<input type="text" name="" size=3>-
-								<input type="text" name="" size=4>-
-								<input type="text" name="" size=4>
+								<input type="text" name="tel1" size=3>-
+								<input type="text" name="tel2" size=4>-
+								<input type="text" name="tel3" size=4>
 							</td>
 						</tr>
 						<tr>
 							<td>회원성별</td>
 							<td>
-								<input type="radio" name="">남성
-								<input type="radio" name="">여성
+								<input type="radio" name="gender" value="M">남성
+								<input type="radio" name="gender" value="F">여성
 							</td>
 						</tr>
 						<tr>
 							<td>가입일자</td>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="joindate"></td>
 						</tr>			
 						<tr>
 							<td>고객등급</td>
 							<td>
-								<select name="">
+								<select name="grade">
 									<option>고객등급</option>
-									<option>VIP</option>
-									<option>직원</option>
-									<option>일반</option>
+									<option value="A">VIP</option>
+									<option value="B">직원</option>
+									<option value="C">일반</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<td>도시코드</td>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="city"></td>
 						</tr>			
 						<tr>
 							<td colspan="2" class="btn_group">
-								<input type="button" value="등록하기">
-								<input type="button" value="다시쓰기">
+								<input type="button" value="등록하기" onclick="member_send()">
+								<input type="button" value="다시쓰기" onclick="test()">
 							</td>
 						</tr>
 					</table>
