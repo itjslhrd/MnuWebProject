@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<!-- 변수, 제어, 반복 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<!-- 문자열처리 -->  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
+<!-- 숫자,날자 formating -->    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +34,10 @@
 			<div class="nav">
 				<nav>
 					<ul>
-						<li><a href="member_write.html">회원등록</a></li>
-						<li><a href="member_list.html">회원목록조회</a></li>
-						<li><a href="member_sale.html">회원매출조회</a></li>
-						<li><a href="member_search.html">회원정보검색</a></li>
+						<li><a href="member_write.do">회원등록</a></li>
+						<li><a href="member_list.do">회원목록조회</a></li>
+						<li><a href="member_sale.do">회원매출조회</a></li>
+						<li><a href="member_search.do">회원정보검색</a></li>
 						<li><a href="index.html">홈으로</a></li>
 					</ul>
 				</nav>			
@@ -47,18 +56,25 @@
 							<td>고객등급</td>
 							<td>매출</td>
 						</tr>
+				<c:forEach var="dto" items="${list}">		
+					<c:set var="total" value="${total + dto.tot}" />	
 						<tr>
-							<td>100001</td>
-							<td>김행복</td>
-							<td>010-1111-2222</td>
-							<td>VIP</td>
-							<td>8,000</td>
+							<td>${dto.custno}</td>
+							<td>${dto.custname}</td>
+							<td>${dto.phone}</td>
+						<c:choose>
+							<c:when test="${dto.grade=='A'}"><td>VIP</td></c:when>	
+							<c:when test="${dto.grade=='B'}"><td>일반</td></c:when>	
+							<c:when test="${dto.grade=='C'}"><td>직원</td></c:when>								
+						</c:choose>							
+							<td><fmt:formatNumber value="${dto.tot}" type="number" />   </td>
 						</tr>
-						
+				</c:forEach>		
 						<tr>
 							<td colspan="4" style="text-align:center">총매출액</td>
-							<td>18,400</td>
+							<td><fmt:formatNumber value="${total}" type="number" /></td>
 						</tr>
+						
 					</table>
 			</div>
 		</section>

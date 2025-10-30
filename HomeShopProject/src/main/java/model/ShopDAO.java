@@ -85,11 +85,26 @@ public class ShopDAO {
 		//반환값 정의
 		List<MemberDTO> list = new ArrayList();
 		//쿼리
-		String sql="";
+		String sql="select t1.custno,custname,phone,grade,sum(price) tot\r\n"
+				+ "		from tbl_member_001 t1, tbl_money_001 t2\r\n"
+				+ "				where t1.custno=t2.custno\r\n"
+				+ "						group by t1.custno,custname,phone,grade\r\n"
+				+ "								order by sum(price) desc";
 		try {
 			conn = DBManager.getConn();
 			pstmt = conn.prepareStatement(sql);
 			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setCustno(rs.getInt("custno"));
+				dto.setCustname(rs.getString("custname"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setGrade(rs.getString("grade"));
+				dto.setTot(rs.getInt("tot"));
+
+				list.add(dto);
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -104,11 +119,26 @@ public class ShopDAO {
 		//반환값 정의
 		MemberDTO dto = new MemberDTO();
 		//쿼리
-		String sql="";
+		String sql="select custno, custname, phone, gender, joindate,\r\n"
+				+ "		grade,cityname from tbl_member_001 t1, tbl_citY_001 t2\r\n"
+				+ "				where t1.city=t2.city and custno=?";
+
 		try {
 			conn = DBManager.getConn();
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, custno);
 			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+				dto.setCustno(rs.getInt("custno"));//rs 값을 dto에 세팅
+				dto.setCustname(rs.getString("custname"));//
+				dto.setPhone(rs.getString("phone"));//
+				dto.setGender(rs.getString("gender"));//
+				dto.setJoindate(rs.getString("joindate"));//
+				dto.setGrade(rs.getString("grade"));//
+				dto.setCity(rs.getString("cityname"));//
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();

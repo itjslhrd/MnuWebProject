@@ -9,7 +9,14 @@ public class MemberDTO {
 	private String grade;		//고객등급
 	private String city;		//도시코드
 	//private String cityname;
+	private int tot;
 	
+	public int getTot() {
+		return tot;
+	}
+	public void setTot(int tot) {
+		this.tot = tot;
+	}
 	public int getCustno() {
 		return custno;
 	}
