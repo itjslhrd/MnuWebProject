@@ -149,4 +149,69 @@ public class ShopDAO {
 		return dto;
 		
 	}
+	
+	//회원번호를 이용한 검색(select)
+	public MemberDTO memberSelect(int custno) {
+		//반환값 정의
+		MemberDTO dto = new MemberDTO();
+		//쿼리
+		String sql="select * from tbl_member_001 where custno=?";
+
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, custno);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+				dto.setCustno(rs.getInt("custno"));//rs 값을 dto에 세팅
+				dto.setCustname(rs.getString("custname"));//
+				dto.setPhone(rs.getString("phone"));//
+				dto.setGender(rs.getString("gender"));//
+				dto.setJoindate(rs.getString("joindate"));//
+				dto.setGrade(rs.getString("grade"));//
+				dto.setCity(rs.getString("city"));//
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			//insert, update, delete
+			DBManager.close(conn, pstmt);
+		}
+		return dto;
+		
+	}
+
+	//회원정보수정
+	public int memberModify(MemberDTO dto) {
+		//반환값 정의
+		int row=0;
+		//쿼리
+		String sql="update tbl_member_001  set phone=?, gender=? ,"
+				+ "joindate=?, grade=?, city=? where custno=?";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			//?에 값 대입
+			pstmt.setString(1, dto.getPhone());//문자열 대입
+			pstmt.setString(2, dto.getGender());//문자열 대입
+			pstmt.setString(3, dto.getJoindate());//문자열 대입
+			pstmt.setString(4, dto.getGrade());//문자열 대입
+			pstmt.setString(5, dto.getCity());//문자열 대입
+			pstmt.setInt(6, dto.getCustno());//정수 대입
+			
+			//명령 실행
+			row = pstmt.executeUpdate();//insert, update, delete
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			//insert, update, delete
+			DBManager.close(conn, pstmt);
+		}
+		return row;
+	}
+	
 }

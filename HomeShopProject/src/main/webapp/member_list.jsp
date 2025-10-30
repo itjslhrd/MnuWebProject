@@ -60,8 +60,8 @@
 				</c:if>
 				<c:forEach var="dto" items="${list}">
 						<tr>
-							<td>${dto.custno}</td>
-							<td>${dto.custname}</td>
+							<td><a href="member_modify.do?custno=${dto.custno}">${dto.custno}</a></td>
+							<td><a href="member_modify.do?custno=${dto.custno}">${dto.custname}</a></td>
 							<td>${dto.phone}</td>
 						<c:if test="${dto.gender=='M'}">
 							<td>남자</td>
