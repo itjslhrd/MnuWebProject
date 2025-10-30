@@ -36,6 +36,7 @@ public class MemberListServlet extends HttpServlet {
 		ShopDAO dao = new ShopDAO();
 		//메소드 호출
 		List<MemberDTO> list = dao.memberList();
+		int tot = 10;
 		//값 넘기기
 		request.setAttribute("list", list);
 	
