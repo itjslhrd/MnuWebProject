@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ArtistDTO;
+import model.AuditionDAO;
+
 /**
  * Servlet implementation class ArtistWriteServlet
  */
@@ -37,8 +40,32 @@ public class ArtistWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//DB 연결
+		AuditionDAO dao = new AuditionDAO();
+		ArtistDTO dto = new ArtistDTO();
+		
+		request.setCharacterEncoding("utf-8");
+		
+		dto.setArtist_id(request.getParameter("artist_id"));
+		dto.setArtist_name(request.getParameter("artist_name"));
+		dto.setArtist_birth(request.getParameter("birth1") + 
+				request.getParameter("birth2") + 
+				request.getParameter("birth3"));
+		dto.setArtist_gender(request.getParameter("artist_gender"));
+		dto.setTalent(request.getParameter("talent"));
+		dto.setAgency(request.getParameter("agency"));
+		
+		int row = dao.artistWrite(dto);
+		
+		if(row == 0) {
+			response.sendRedirect("artist_write.do");
+		}else {
+			response.sendRedirect("index.do");
+		}
+		
+		//RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		//rd.forward(request, response);
+		
 	}
 
 }
