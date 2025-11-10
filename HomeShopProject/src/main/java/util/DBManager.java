@@ -9,8 +9,14 @@ public class DBManager {
 	public static Connection getConn() {
 		Connection conn = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mnu?serverTimezone=UTC", "root", "webs0100");
+			//mysql 용
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mnu?serverTimezone=UTC", "root", "webs0100");
+			
+			//oracle 용
+			Class.forName("oracle.jdbc.OracleDriver");	
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@172.17.207.103:1521/xe","C##HR", "1234");
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
