@@ -16,14 +16,10 @@
 		}
 		
 		
-		alert(" 정보를 저장합니다.");
+		alert(" 정보를 수정합니다.");
 		student.submit();
 	}
-	function student_reset(){
-		alert("모든정보를 지우고 다시 시작합니다");
-		student.reset();
-		student.syear.focus();
-	}
+	
 </script>
 </head>
 <body>
@@ -40,50 +36,50 @@
 	<div class="section">
 		<section>
 			<div class="content">
-				<h2 class="title">학생 등록</h2>
-				<form name="student" method="post" action="student_write.do">
+				<h2 class="title">학생 정보 수정</h2>
+				<form name="student" method="post" action="student_modify.do">
 					<table>
 						<tr>
 							<td>학년</th>
-							<td><input type="text" name="syear" size="2"> 예) 1</td>
+							<td><input type="text" name="syear" size="2" value="${dto.syear}" readonly> 예) 1</td>
 						</tr>
 						<tr>
 							<td>반</th>
-							<td><input type="text" name="sclass" size="2"> 예) 01</td>
+							<td><input type="text" name="sclass" size="2" value="${dto.sclass}" readonly> 예) 01</td>
 						</tr>
 						<tr>
 							<td>번호</th>
-							<td><input type="text" name="sno" size="2"> 예) 01</td>
+							<td><input type="text" name="sno" size="2" value="${dto.sno}" readonly> 예) 01</td>
 						</tr>
 						<tr>
 							<td>이름</td>
-							<td><input type="text" name="sname" ></td>
+							<td><input type="text" name="sname" value="${dto.sname}" readonly></td>
 						</tr>
 						<tr>
 							<td>생년월일</td>
 							<td>
-								<input type="text" name="birth">
+								<input type="text" name="birth" value="${dto.birth}">
 							</td>
 						</tr>
 						<tr>
 							<td>성별</td>
 							<td>
-								<input type="radio" name="gender" value="M">남자
-								<input type="radio" name="gender" value="F">여자
+								<input type="radio" name="gender" value="M" <c:if test="${dto.gender=='M'}">checked</c:if>>남자
+								<input type="radio" name="gender" value="F" <c:if test="${dto.gender=='F'}">checked</c:if>>여자
 							</td>
 						</tr>
 						<tr>
 							<td>전화</td>
 							<td>
-								<input type="text" name="tel1" size="3">-
-								<input type="text" name="tel2" size="4">-
-								<input type="text" name="tel3" size="4">
+								<input type="text" name="tel1" size="3" value="${dto.tel1}">-
+								<input type="text" name="tel2" size="4" value="${dto.tel2}">-
+								<input type="text" name="tel3" size="4" value="${dto.tel3}">
 							</td>
 						</tr>			
 						<tr>
 							<td colspan="2" class="btn_group">
-								<input type="button" value="학생등록" onClick="student_send()">
-								<input type="button" value="다시쓰기"  onClick="student_reset()">
+								<input type="button" value="수정하기" onClick="student_send()">
+								<input type="button" value="취소하기"  onClick="history.back()">
 							</td>
 						</tr>
 					</table>
