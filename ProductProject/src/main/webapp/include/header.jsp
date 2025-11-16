@@ -4,7 +4,9 @@
     					<ul>
 						<li><a href="product_write.jsp">제품등록</a></li>
 						<li><a href="product_list.jsp">제품조회</a></li>
-						<li><a href="inout_write.jsp">입출고등록</a></li>
+						<li><a href="product_write.jsp">거래처등록</a></li>
+						<li><a href="product_list.jsp">거래처조회</a></li>						
+						<li><a href="inout_write.do">입출고등록</a></li>
 						<li><a href="inout_list.jsp">입출고내역조회</a></li>
 						<li><a href="outsale_list.jsp">출고매출이익</a></li>
 						<li><a href="index.jsp">홈으로</a></li>
