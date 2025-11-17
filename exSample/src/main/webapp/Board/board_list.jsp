@@ -42,7 +42,7 @@
 			<font face="돋움" size="2" color="#000000">5</font></td>
 			<td align="left" height="20">&nbsp;
 				<font face="돋움" size="2" color="#000000">
-				<a class="list" href="">제목부분입니다</a></td>
+				<a class="list" href="board_view.do?idx=1">제목부분입니다</a></td>
 					<td align="center" height="20"><font face="돋움" size="2">
 					<a class="list" href="mailto:ein1027@nate.com">나종민</a></font></td>
 				<td align="center" height="20"><font face="돋움" size="2">2007-10-22</font></td>
@@ -94,7 +94,7 @@
 				</table>
 			</td>
 			<td width="25%" align="right">
-			<a href="#"><img src="/Board/img/write.gif" border="0"></a>
+			<a href="board_write.do"><img src="/Board/img/write.gif" border="0"></a>
 			</td>
 		</tr>
 	</table>

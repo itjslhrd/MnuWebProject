@@ -49,18 +49,15 @@
       <p align="center">
       <font size="2">
        <!-- 새글쓰기 -->
-       <a href="">
+       <a href="board_write.do">
        <img src="/Board/img/write.jpg" border="0"></a>&nbsp;&nbsp;
-	   <!-- 답글쓰기 -->
-       <a href="">
-       <img src="/Board/img/reply.gif" border="0"></a>&nbsp;&nbsp;
 	   <!-- 수정하기 -->
-       <a href="">
+       <a href="board_modify.do">
        <img src="/Board/img/edit.gif" border="0"></a>&nbsp;&nbsp;
          <!-- 삭제하기 -->
-       <a href=""><img src="/Board/img/del.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="board_delete.do"><img src="/Board/img/del.gif" border="0"></a>&nbsp;&nbsp;
        <!-- 목록보기 -->
-       <a href=""><img src="/Board/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="board_list.do"><img src="/Board/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
       </font>
     </td>
   </tr>

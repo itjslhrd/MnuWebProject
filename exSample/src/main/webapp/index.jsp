@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ include file="/Include/topmenu.jsp" %>
-
+<!-- jsp include 디랙티브를 이용한 방법 -->
  <html>
  <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <title> 메인 페이지</title>
