@@ -5,7 +5,33 @@
 <html>
    <head><title>게시판 작성</title>
     <link rel="stylesheet" type="text/css" href="/stylesheet.css">
+<script>
+	function board_send(){
+		if(board.name.value==""){
+			alert("이름을 입력하세요");
+			board.name.focus();
+			return;
+		}
+		if(board.subject.value==""){
+			alert("제목을 입력하세요");
+			board.subject.focus();
+			return;
+		}
+		if(board.contents.value==""){
+			alert("내용을 입력하세요");
+			board.contents.focus();
+			return;
+		}
+		if(board.pass.value==""){
+			alert("비밀번호을 입력하세요");
+			board.pass.focus();
+			return;
+		}
+		
+		board.submit();
+	}
 
+</script>
 </head>
  <body topmargin="0" leftmargin="0">
  <table border="0" width="800">
@@ -21,12 +47,12 @@
      <font size="2"> - 글쓰기</font><p>
      <img src="/Board/img/bullet-03.gif"><font size="2" face="돋움" color="orange"> 잠깐</font> &nbsp;
      <img src="/Board/img/bullet-02.gif"><font size="2" face="돋움">는 필수 입력 사항입니다.</font><p>
-     <form method="post">
+     <form name="board" method="post" action="board_write.do">
 
 	  <table border="0">
        <tr>
          <td width="5%" align="right"><img src="/Board/img/bullet-02.gif"></td>
-         <td width="15%"><font size="2 face="돋움"">글쓴이</font></td>
+         <td width="15%"><font size="2 face="돋움">글쓴이</font></td>
          <td width="80%">
          <input type="text" size="20" name="name"></td>
        </tr>
@@ -56,8 +82,8 @@
           <td align="right">&nbsp;</td>
           <td><font size="2">&nbsp;</font></td>
           <td>
-                     <a href="#"><img src="/Board/img/save.gif" border=0></a>&nbsp;&nbsp;&nbsp;
-                     <a href="#"><img src="/Board/img/cancle.gif" border=0></a>
+             <a href="javascript:board_send()"><img src="/Board/img/save.gif" border=0></a>&nbsp;&nbsp;&nbsp;
+             <a href="javascript:history.back()"><img src="/Board/img/cancle.gif" border=0></a>
           </td>
         </tr>
       </table>
@@ -67,3 +93,5 @@
   </table>
   </body>
   </html>
+
+  

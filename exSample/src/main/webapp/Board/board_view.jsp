@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@ include file="/Include/topmenu.jsp" %>
  <html>
@@ -10,7 +11,14 @@
      td.content { padding:10px; line-height:1.6em; text-align:justify; }
      a.list { text-decoration:none;color:black;font-size:10pt; }
    </style>
+<script>
+	function board_del(){
+		url="board_delete.do?idx=${dto.idx}";
+		//팝업창
+		window.open(url,"board_delete","width=350, height=200")
+	}
 
+</script>
  </head>
  <body topmargin="0" leftmargin="0">
    <table border="0" width="800">
@@ -32,16 +40,16 @@
          <tr bgcolor="e3e9ff">
            <td class="title">
              <img src="/Board/img/bullet-04.gif"> <font size="2" face="돋움">
-                  제목부분</font>
+                  ${dto.subject}</font>
            </td>
          </tr>
          <tr>
            <td class="content">
              <p align="right"><font size="2" face="돋움">
-              <a class="list" href="mailto:ein1027@nate.com">나종민</a> / <font size="2" face="돋움">2007-1022 / 2번 읽음</font>
+              <a class="list" href="mailto:ein1027@nate.com">${dto.name}</a> / <font size="2" face="돋움">${fn:substring(dto.regdate,0,10)} / ${dto.readcnt }번 읽음</font>
              <p>
-             내용이 들어가는 부분<p><!--contents의 내용을 <BR>태그로 처리-->
-           </td>
+             ${dto.contents}<p><!--contents의 내용을 <BR>태그로 처리-->
+                        </td>
          </tr>
        </table>
   
@@ -52,10 +60,10 @@
        <a href="board_write.do">
        <img src="/Board/img/write.jpg" border="0"></a>&nbsp;&nbsp;
 	   <!-- 수정하기 -->
-       <a href="board_modify.do">
+       <a href="board_modify.do?idx=${dto.idx}">
        <img src="/Board/img/edit.gif" border="0"></a>&nbsp;&nbsp;
          <!-- 삭제하기 -->
-       <a href="board_delete.do"><img src="/Board/img/del.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="javascript:board_del()"><img src="/Board/img/del.gif" border="0"></a>&nbsp;&nbsp;
        <!-- 목록보기 -->
        <a href="board_list.do"><img src="/Board/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
       </font>

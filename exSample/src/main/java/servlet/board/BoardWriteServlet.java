@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.board.BoardDAO;
+import model.board.BoardDTO;
+
 /**
  * Servlet implementation class BoardWriteServlet
  */
@@ -37,8 +40,21 @@ public class BoardWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		BoardDAO dao = BoardDAO.getInstance();
+		BoardDTO dto = new BoardDTO();
+		
+		dto.setName(request.getParameter("name"));
+		dto.setEmail(request.getParameter("email"));
+		dto.setSubject(request.getParameter("subject"));
+		dto.setContents(request.getParameter("contents"));
+		dto.setPass(request.getParameter("pass"));
+		
+		//DB 저장 메소드 호출
+		int row = dao.boardWrite(dto);
+		
+		response.sendRedirect("board_list.do");
 	}
 
 }

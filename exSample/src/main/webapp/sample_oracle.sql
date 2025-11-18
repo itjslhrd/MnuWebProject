@@ -80,6 +80,17 @@ CREATE TABLE tbl_notice (
 );
 create sequence tbl_notice_seq_idx;
 
+-- mysql용
+CREATE TABLE tbl_notice (
+  idx int NOT NULL auto_increment,				--  고유번호, 자동증가
+  adid varchar(20) references tbl_admin ,		--  관리자 아이디
+  subject varchar(255) NOT NULL ,			--  제목
+  contents varchar(2000) NOT NULL,			--  내용
+  regdate datetime default current_timestamp,	--  등록일자
+  readcnt int default 0,				--  조회수
+  PRIMARY KEY  (idx)
+);
+
 -- 방명록 테이블(답변글 없음)
 -- 테이블 구조 `tbl_guest`
 create table tbl_guest (
@@ -120,6 +131,18 @@ CREATE TABLE tbl_board (
 );
 create sequence tbl_board_seq_idx;
 
+--mysql 용
+CREATE TABLE tbl_board (
+  idx int NOT NULL auto_increment,				--  고유번호, 자동증가
+  pass varchar(20) NOT NULL ,			--  비밀번호
+  name varchar(20) NOT NULL ,			--  작성자 이름
+  email varchar(50) ,				--  작성자 이메일
+  regdate datetime default current_timestamp,			--  작성일자
+  subject varchar(100) NOT NULL,			--  제목
+  contents text NOT NULL,			--  내용
+  readcnt int default 0,				--  조회수
+  PRIMARY KEY  (idx)
+);
 -- 회원전용 게시판 테이블
 -- 테이블 구조 `tbl_user_board`
 CREATE TABLE tbl_board (

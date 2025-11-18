@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.board.BoardDAO;
+
 /**
  * Servlet implementation class BoardDeleteServlet
  */
@@ -28,7 +30,10 @@ public class BoardDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		
+		request.setAttribute("idx", idx);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/Board/board_delete.jsp");
 		rd.forward(request, response);
 	}
@@ -37,8 +42,18 @@ public class BoardDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		String pass = request.getParameter("pass");
+		
+		BoardDAO dao = BoardDAO.getInstance();
+		
+		int row = dao.boardDelete(idx,pass);
+		
+		request.setAttribute("row", row);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/Board/board_delete_pro.jsp");
+		rd.forward(request, response);
+		
 	}
 
 }

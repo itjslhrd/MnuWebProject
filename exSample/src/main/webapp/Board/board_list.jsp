@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 
 <%@ include file="/Include/topmenu.jsp" %>
 
@@ -28,7 +31,7 @@
         <img src="/Board/img/bullet-01.gif"> <b>자 유 게 시 판</b></font></td></tr>
       <tr>
         <td colspan="5" align="right" valign="middle" height="20">
-		<font size="2" face="고딕">전체 : <b>15</b>건 - 1/ 2 Pages</font></td></tr>
+		<font size="2" face="고딕">전체 : <b>${totcount}</b>건 - 1/ 2 Pages</font></td></tr>
  	   <tr bgcolor="e3e9ff">
  	      <td width="10%" align="center" height="20"><font face="돋움" size="2">번 호</font></td>
  	      <td width="50%" align="center" height="20"><font face="돋움" size="2">제 목</font></td>
@@ -37,31 +40,29 @@
  	      <td width="10%" align="center" height="20"><font face="돋움" size="2">조회수</font></td>
  	   </tr>
 
+	<c:if test="${empty list}">
+		<tr onMouseOver="style.backgroundColor='#D1EEEE'" onMouseOut="style.backgroundColor=''">
+			<td align="center" height="25" colspan="5">
+				<font face="돋움" size="2" color="#000000">등록된 자료가 없습니다</font>
+			</td>
+		</tr>
+	
+	</c:if>
+	<c:if test="${!empty list}">
+		<c:forEach var="dto" items="${list}">		
 		<tr onMouseOver="style.backgroundColor='#D1EEEE'" onMouseOut="style.backgroundColor=''">
 			<td align="center" height="25">
-			<font face="돋움" size="2" color="#000000">5</font></td>
+			<font face="돋움" size="2" color="#000000">${dto.idx}</font></td>
 			<td align="left" height="20">&nbsp;
 				<font face="돋움" size="2" color="#000000">
-				<a class="list" href="board_view.do?idx=1">제목부분입니다</a></td>
+				<a class="list" href="board_view.do?idx=${dto.idx}">${dto.subject}</a></td>
 					<td align="center" height="20"><font face="돋움" size="2">
-					<a class="list" href="mailto:ein1027@nate.com">나종민</a></font></td>
-				<td align="center" height="20"><font face="돋움" size="2">2007-10-22</font></td>
-				<td align="center" height="20"><font face="돋움" size="2">
-				3</font></td>
+					<a class="list" href="mailto:ein1027@nate.com">${fn:substring(dto.name,0,2)}****</a></font></td>
+				<td align="center" height="20"><font face="돋움" size="2">${fn:substring(dto.regdate,0,10)}</font></td>
+				<td align="center" height="20"><font face="돋움" size="2">${dto.readcnt}</font></td>
 		</tr>
-		<tr onMouseOver="style.backgroundColor='#D1EEEE'" onMouseOut="style.backgroundColor=''">
-			<td align="center" height="25">
-			<font face="돋움" size="2" color="#000000">5</font></td>
-			<td align="left" height="20">&nbsp;
-				<font face="돋움" size="2" color="#000000">
-				<a class="list" href="">제목부분입니다</a></td>
-					<td align="center" height="20"><font face="돋움" size="2">
-					<a class="list" href="mailto:ein1027@nate.com">나종민</a></font></td>
-				<td align="center" height="20"><font face="돋움" size="2">2007-10-22</font></td>
-				<td align="center" height="20"><font face="돋움" size="2">
-				3</font></td>
-		</tr>
-
+		</c:forEach>
+	</c:if>
 
 	 <div align="center">
         <table width="700" border="0" cellspacing="0" cellpadding="5">
