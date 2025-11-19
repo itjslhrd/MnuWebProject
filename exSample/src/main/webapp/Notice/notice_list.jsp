@@ -89,7 +89,7 @@
 				</table>
 			</td>
 			<td width="25%" align="right">
-			<a href="#"><img src="/Notice/img/write.gif" border="0"></a>
+			
 			</td>
 		</tr>
 	</table>

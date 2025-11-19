@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,8 +36,27 @@ public class NoticeViewServlet extends HttpServlet {
 		
 		NoticeDAO dao = NoticeDAO.getInstance();
 		
-		//조회수 증가
-		dao.noticeHits(idx);
+		//쿠키를 이용한 조회수 증가
+		//쿠키검사
+		boolean bool = false;
+		Cookie info = null;
+		Cookie[] cookies = request.getCookies();
+		for(int x=0; x<cookies.length; x++) {
+			info = cookies[x];
+			if(info.getName().equals("mnuNotice"+idx)) {
+				bool = true;
+				break;
+			}
+		}
+		// 쿠키에서 사용할 값 설정
+		String newValue=""+System.currentTimeMillis();
+		if(!bool) {//쿠키가 존재하지 않으면
+			dao.noticeHits(idx);;//조회수 증가 메소드
+			info = new Cookie("mnuNotice"+idx,newValue);//쿠키생성
+			info.setMaxAge(60*60);//1시간 (24*60*60)-> 1일
+			response.addCookie(info);//쿠키전용
+		}
+		
 		NoticeDTO nDto = dao.noticeSelect(idx);
 		nDto.setContents(nDto.getContents().replace("\n", "<br>"));
 		
