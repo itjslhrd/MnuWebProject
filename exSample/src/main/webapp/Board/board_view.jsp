@@ -13,7 +13,7 @@
    </style>
 <script>
 	function board_del(){
-		url="board_delete.do?idx=${dto.idx}";
+		url="board_delete.do?idx=${dto.idx}&page=${page}";
 		//팝업창
 		window.open(url,"board_delete","width=350, height=200")
 	}
@@ -57,15 +57,15 @@
       <p align="center">
       <font size="2">
        <!-- 새글쓰기 -->
-       <a href="board_write.do">
+       <a href="board_write.do?page=${page}">
        <img src="/Board/img/write.jpg" border="0"></a>&nbsp;&nbsp;
 	   <!-- 수정하기 -->
-       <a href="board_modify.do?idx=${dto.idx}">
+       <a href="board_modify.do?idx=${dto.idx}&page=${page}">
        <img src="/Board/img/edit.gif" border="0"></a>&nbsp;&nbsp;
          <!-- 삭제하기 -->
        <a href="javascript:board_del()"><img src="/Board/img/del.gif" border="0"></a>&nbsp;&nbsp;
        <!-- 목록보기 -->
-       <a href="board_list.do"><img src="/Board/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="board_list.do?page=${page}"><img src="/Board/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
       </font>
     </td>
   </tr>

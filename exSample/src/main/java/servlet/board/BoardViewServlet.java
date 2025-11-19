@@ -34,6 +34,7 @@ public class BoardViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//넘어온값 받기
 		int idx = Integer.parseInt(request.getParameter("idx"));
+		int page =  Integer.parseInt(request.getParameter("page"));
 		
 		//db에서 idx에 해당하는 글 검색
 		BoardDAO dao = BoardDAO.getInstance();
@@ -62,6 +63,7 @@ public class BoardViewServlet extends HttpServlet {
 		dto.setContents(dto.getContents().replace("\n", "<br>"));
 		
 		request.setAttribute("dto", dto);
+		request.setAttribute("page", page);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Board/board_view.jsp");
 		rd.forward(request, response);

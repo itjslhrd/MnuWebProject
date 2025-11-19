@@ -32,11 +32,14 @@ public class BoardModifyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idx = Integer.parseInt(request.getParameter("idx"));
+		int page = Integer.parseInt(request.getParameter("page"));
+		
 		//db에서 idx에 해당하는 글 검색
 		BoardDAO dao = BoardDAO.getInstance();
 		
 		BoardDTO dto = dao.boardSelect(idx);
 		request.setAttribute("dto", dto);
+		request.setAttribute("page", page);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Board/board_modify.jsp");
 		rd.forward(request, response);
@@ -50,7 +53,8 @@ public class BoardModifyServlet extends HttpServlet {
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		BoardDTO dto = new BoardDTO();
-
+		int page = Integer.parseInt(request.getParameter("page"));
+		
 		dto.setIdx(Integer.parseInt(request.getParameter("idx")));
 		//dto.setName(request.getParameter("name"));
 		dto.setEmail(request.getParameter("email"));
@@ -60,7 +64,7 @@ public class BoardModifyServlet extends HttpServlet {
 		
 		int row = dao.boardModify(dto);
 		if(row==1) {
-			response.sendRedirect("board_list.do");
+			response.sendRedirect("board_list.do?page="+page);
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("/Board/board_modify_error.jsp");
 			rd.forward(request, response);

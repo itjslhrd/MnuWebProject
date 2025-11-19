@@ -131,6 +131,73 @@ public class BoardDAO {
  		return list;
  	}
 
+ 	// 페이지 처리를 위한 메소드
+ 	public List<BoardDTO> boardList(int pagestart, int maxlist) {
+ 		//반환타입
+ 		List<BoardDTO> list = new ArrayList();
+ 		//쿼리
+ 		String sql = "select * from tbl_board order by idx desc limit ?,?";
+ 		
+ 		try {
+ 			conn = DBManager.getConn();
+ 			pstmt = conn.prepareStatement(sql);
+ 			pstmt.setInt(1, pagestart);
+ 			pstmt.setInt(2, maxlist);
+ 			
+ 			rs = pstmt.executeQuery();
+ 			
+ 			while(rs.next()) {
+ 				BoardDTO dto = new BoardDTO();
+ 				dto.setIdx(rs.getInt("idx"));
+ 				dto.setName(rs.getString("name"));
+ 				dto.setSubject(rs.getString("subject"));
+ 				dto.setRegdate(rs.getString("regdate"));
+ 				dto.setReadcnt(rs.getInt("readcnt"));
+ 				
+ 				list.add(dto);
+ 			}
+ 		}catch(Exception e) {
+ 			e.printStackTrace();
+ 		}finally {
+ 			DBManager.close(conn, pstmt, rs);
+ 		}
+ 		return list;
+ 	}
+
+ 	// 페이지 처리를 위한 메소드(검색조건 포함)
+ 	public List<BoardDTO> boardList(int pagestart, int maxlist, String search, String key) {
+ 		//반환타입
+ 		List<BoardDTO> list = new ArrayList();
+ 		//쿼리
+ 		String sql = "select * from tbl_board where " + search + " like ? order by idx desc limit ?,?";
+ 		
+ 		try {
+ 			conn = DBManager.getConn();
+ 			pstmt = conn.prepareStatement(sql);
+ 			pstmt.setString(1, "%"+key+"%");
+ 			pstmt.setInt(2, pagestart);
+ 			pstmt.setInt(3, maxlist);
+ 			
+ 			rs = pstmt.executeQuery();
+ 			
+ 			while(rs.next()) {
+ 				BoardDTO dto = new BoardDTO();
+ 				dto.setIdx(rs.getInt("idx"));
+ 				dto.setName(rs.getString("name"));
+ 				dto.setSubject(rs.getString("subject"));
+ 				dto.setRegdate(rs.getString("regdate"));
+ 				dto.setReadcnt(rs.getInt("readcnt"));
+ 				
+ 				list.add(dto);
+ 			}
+ 		}catch(Exception e) {
+ 			e.printStackTrace();
+ 		}finally {
+ 			DBManager.close(conn, pstmt, rs);
+ 		}
+ 		return list;
+ 	}
+
  	// 게시글 저장 메소드
  	public int boardWrite(BoardDTO dto) {
  		int row=0;

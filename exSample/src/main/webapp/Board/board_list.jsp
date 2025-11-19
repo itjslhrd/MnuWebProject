@@ -41,7 +41,7 @@
         <img src="/Board/img/bullet-01.gif"> <b>자 유 게 시 판</b></font></td></tr>
       <tr>
         <td colspan="5" align="right" valign="middle" height="20">
-		<font size="2" face="고딕">전체 : <b>${totcount}</b>건 - 1/ 2 Pages</font></td></tr>
+		<font size="2" face="고딕">전체 : <b>${totcount}</b>건 - ${page}/ ${totpage} Pages</font></td></tr>
  	   <tr bgcolor="e3e9ff">
  	      <td width="10%" align="center" height="20"><font face="돋움" size="2">번 호</font></td>
  	      <td width="50%" align="center" height="20"><font face="돋움" size="2">제 목</font></td>
@@ -50,7 +50,7 @@
  	      <td width="10%" align="center" height="20"><font face="돋움" size="2">조회수</font></td>
  	   </tr>
 
-	<c:if test="${empty list}">
+	<c:if test="${empty bList}">
 		<tr onMouseOver="style.backgroundColor='#D1EEEE'" onMouseOut="style.backgroundColor=''">
 			<td align="center" height="25" colspan="5">
 				<font face="돋움" size="2" color="#000000">등록된 자료가 없습니다</font>
@@ -58,19 +58,20 @@
 		</tr>
 	
 	</c:if>
-	<c:if test="${!empty list}">
-		<c:forEach var="dto" items="${list}">		
+	<c:if test="${!empty bList}">
+		<c:forEach var="dto" items="${bList}">		
 		<tr onMouseOver="style.backgroundColor='#D1EEEE'" onMouseOut="style.backgroundColor=''">
 			<td align="center" height="25">
-			<font face="돋움" size="2" color="#000000">${dto.idx}</font></td>
+			<font face="돋움" size="2" color="#000000">${listcount}</font></td>
 			<td align="left" height="20">&nbsp;
 				<font face="돋움" size="2" color="#000000">
-				<a class="list" href="board_view.do?idx=${dto.idx}">${dto.subject}</a></td>
+				<a class="list" href="board_view.do?idx=${dto.idx}&page=${page}">${dto.subject}</a></td>
 					<td align="center" height="20"><font face="돋움" size="2">
 					<a class="list" href="mailto:ein1027@nate.com">${fn:substring(dto.name,0,2)}****</a></font></td>
 				<td align="center" height="20"><font face="돋움" size="2">${fn:substring(dto.regdate,0,10)}</font></td>
 				<td align="center" height="20"><font face="돋움" size="2">${dto.readcnt}</font></td>
 		</tr>
+		<c:set var="listcount" value="${listcount-1}" />
 		</c:forEach>
 	</c:if>
 
@@ -78,7 +79,7 @@
         <table width="700" border="0" cellspacing="0" cellpadding="5">
           <tr>&nbsp;</tr><tr>
              <td colspan="5">        
-                <div align="center">[1][2][3]</div>
+                <div align="center">${pageSkip}</div>
 			  </td>
 			 </tr>
 		</table>
@@ -93,12 +94,12 @@
 						<tr>
 							<td>
 								<select name="search">
-									<option value="subject">글제목</option>
-									<option value="name">작성자</option>
-									<option value="contents">글내용</option>
+									<option value="subject" <c:if test="${search=='subject'}">selected </c:if>>글제목</option>
+									<option value="name" <c:if test="${search=='name'}">selected </c:if>>작성자</option>
+									<option value="contents" <c:if test="${search=='contents'}">selected </c:if>>글내용</option>
 								</select>
 							</td>
-							<td> <input type="text" size=20 name="key"></td>
+							<td> <input type="text" size=20 name="key" value="${key}"></td>
 							<td> <a href="javascript:board_search()"><img src="/Board/img/search2.gif" border="0"></a></td>
 						</tr>
 					</form>

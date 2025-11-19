@@ -12,7 +12,7 @@
 	<c:if test="${row==1}">
 		<script>
 			alert("삭제되었습니다");
-			opener.location.replace("board_list.do");
+			opener.location.replace("board_list.do?page=${page}");
 			self.close();
 		</script>
 	</c:if>

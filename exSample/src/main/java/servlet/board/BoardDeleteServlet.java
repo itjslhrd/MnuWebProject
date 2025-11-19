@@ -31,8 +31,10 @@ public class BoardDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idx = Integer.parseInt(request.getParameter("idx"));
+		int page = Integer.parseInt(request.getParameter("page"));
 		
 		request.setAttribute("idx", idx);
+		request.setAttribute("page", page);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Board/board_delete.jsp");
 		rd.forward(request, response);
@@ -43,6 +45,7 @@ public class BoardDeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idx = Integer.parseInt(request.getParameter("idx"));
+		int page = Integer.parseInt(request.getParameter("page"));
 		String pass = request.getParameter("pass");
 		
 		BoardDAO dao = BoardDAO.getInstance();
@@ -50,6 +53,7 @@ public class BoardDeleteServlet extends HttpServlet {
 		int row = dao.boardDelete(idx,pass);
 		
 		request.setAttribute("row", row);
+		request.setAttribute("page", page);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Board/board_delete_pro.jsp");
 		rd.forward(request, response);
