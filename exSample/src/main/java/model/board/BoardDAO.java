@@ -44,6 +44,30 @@ public class BoardDAO {
  		}
  		return row;
  	}
+
+ 	//1_1. 조건에 맞는 게시글수 카운트
+ 	public int boardCount(String search, String key) {
+ 		//반환타입
+ 		int row = 0;
+ 		//쿼리
+ 		String sql = "select count(*) counter from tbl_board where " + search + " like ?";
+ 		
+ 		try {
+ 			conn = DBManager.getConn();
+ 			pstmt = conn.prepareStatement(sql);
+ 			pstmt.setString(1, "%"+key+"%");
+ 			
+ 			rs = pstmt.executeQuery();
+ 			if(rs.next()) {
+ 				row = rs.getInt("counter");
+ 			}
+ 		}catch(Exception e) {
+ 			e.printStackTrace();
+ 		}finally {
+ 			DBManager.close(conn, pstmt, rs);
+ 		}
+ 		return row;
+ 	}
 	
  	//2. 전체 게시글수 목록
  	public List<BoardDTO> boardList() {
@@ -75,6 +99,38 @@ public class BoardDAO {
  		}
  		return list;
  	}
+ 	//2_2. 전체 게시글수 목록
+ 	public List<BoardDTO> boardList(String search, String key) {
+ 		//반환타입
+ 		List<BoardDTO> list = new ArrayList();
+ 		//쿼리
+ 		String sql = "select * from tbl_board where "+search+" like ? order by regdate desc";
+ 		
+ 		try {
+ 			conn = DBManager.getConn();
+ 			pstmt = conn.prepareStatement(sql);
+ 			pstmt.setString(1, "%"+key+"%");
+ 			
+ 			rs = pstmt.executeQuery();
+ 			
+ 			while(rs.next()) {
+ 				BoardDTO dto = new BoardDTO();
+ 				dto.setIdx(rs.getInt("idx"));
+ 				dto.setName(rs.getString("name"));
+ 				dto.setSubject(rs.getString("subject"));
+ 				dto.setRegdate(rs.getString("regdate"));
+ 				dto.setReadcnt(rs.getInt("readcnt"));
+ 				
+ 				list.add(dto);
+ 			}
+ 		}catch(Exception e) {
+ 			e.printStackTrace();
+ 		}finally {
+ 			DBManager.close(conn, pstmt, rs);
+ 		}
+ 		return list;
+ 	}
+
  	// 게시글 저장 메소드
  	public int boardWrite(BoardDTO dto) {
  		int row=0;

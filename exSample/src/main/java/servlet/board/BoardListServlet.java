@@ -51,8 +51,24 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		String search = request.getParameter("search");
+		String key = request.getParameter("key");
+		
+		BoardDAO dao = BoardDAO.getInstance();
+		
+		int totcount = dao.boardCount(search, key);
+		List<BoardDTO> list = dao.boardList(search, key);
+		
+		request.setAttribute("totcount", totcount);
+		request.setAttribute("list", list);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/Board/board_list.jsp");
+		rd.forward(request, response);
+		
+				
+		
 	}
 
 }

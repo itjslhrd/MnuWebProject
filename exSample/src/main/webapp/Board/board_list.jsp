@@ -11,7 +11,17 @@
 <style type="text/css">
   a.list {text-decoration:none;color:black;font-size:10pt;}
 </style>
-
+<script>
+	function board_search(){
+		if(board.key.value==""){
+			alert("검색어를 입력하세요");
+			board.key.focus();
+			return;
+		}	
+		board.submit();
+	}
+	
+</script>
 </head>
 <body bgcolor="#FFFFFF" topmargin="0" leftmargin="0">
 <table border="0" width="800">
@@ -78,18 +88,18 @@
 			<td width="25%"> &nbsp;</td>
 			<td width="50%" align="center">
 				<table>
-					<form>	
+					<form name="board" method="post" action="board_list.do">	
 					<!-- 검색어를 이용하여 글제목, 작성자, 글내용 중에 하나를 입력 받아 처리하기 위한 부분 -->
 						<tr>
 							<td>
 								<select name="search">
-									<option value="">글제목</option>
-									<option value="">작성자</option>
-									<option value="">글내용</option>
+									<option value="subject">글제목</option>
+									<option value="name">작성자</option>
+									<option value="contents">글내용</option>
 								</select>
 							</td>
-							<td> <input type="text" size=20 name=""></td>
-							<td> <a href="#"><img src="/Board/img/search2.gif" border="0"></a></td>
+							<td> <input type="text" size=20 name="key"></td>
+							<td> <a href="javascript:board_search()"><img src="/Board/img/search2.gif" border="0"></a></td>
 						</tr>
 					</form>
 				</table>

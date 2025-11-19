@@ -1,7 +1,6 @@
 package servlet.notice;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import model.notice.NoticeDAO;
 import model.notice.NoticeDTO;
 
 /**
- * Servlet implementation class NoticeListServlet
+ * Servlet implementation class NoticeViewServlet
  */
-@WebServlet("/Notice/notice_list.do")
-public class NoticeListServlet extends HttpServlet {
+@WebServlet("/Notice/notice_view.do")
+public class NoticeViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListServlet() {
+    public NoticeViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +31,18 @@ public class NoticeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		
 		NoticeDAO dao = NoticeDAO.getInstance();
 		
-		int totcount = dao.noticeCount();//총 글수
-		List<NoticeDTO> nList = dao.noticeList();//전체목록
-
-		request.setAttribute("totcount", totcount);
-		request.setAttribute("nList", nList);
+		//조회수 증가
+		dao.noticeHits(idx);
+		NoticeDTO nDto = dao.noticeSelect(idx);
+		nDto.setContents(nDto.getContents().replace("\n", "<br>"));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/Notice/notice_list.jsp");
+		request.setAttribute("nDto", nDto);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/Notice/notice_view.jsp");
 		rd.forward(request, response);
 	}
 
