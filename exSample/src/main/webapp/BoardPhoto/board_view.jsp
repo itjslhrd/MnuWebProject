@@ -10,7 +10,12 @@
      td.content { padding:10px; line-height:1.6em; text-align:justify; }
      a.list { text-decoration:none;color:black;font-size:10pt; }
    </style>
-
+<script>
+	function board_del(){
+		url="board_delete.do?idx=${dto.idx}";
+		window.open(url,"photoboard_delete","width=350, height=250");
+	}
+</script>
  </head>
  <body topmargin="0" leftmargin="0">
    <table border="0" width="800">
@@ -23,24 +28,23 @@
        <td width="80%" valign="top">&nbsp;<br>
          <table border="0" width="90%" align="center">
            <tr>
-             <td colspan="2"><img src="/PhotoBoard/img/bullet-01.gif"> 
-              <font color="blue" size="3">자 유 게 시 판</font><font size="2"> - 글읽기</font></td>
+             <td colspan="2"><img src="/BoardPhoto/img/bullet-01.gif"> 
+              <font color="blue" size="3">포 토 자 유 게 시 판</font><font size="2"> - 글읽기</font></td>
            </tr>
          </table>
        <p>
        <table border="0" width="90%" align="center" cellspacing="0"  style="border-width:1px;border-color:#0066cc;border-style:outset;">
          <tr bgcolor="e3e9ff">
            <td class="title">
-             <img src="/PhotoBoard/img/bullet-04.gif"> <font size="2" face="돋움">
-                  제목부분</font>
+             <img src="/BoardPhoto/img/bullet-04.gif"> <font size="2" face="돋움">
+                  ${dto.subject}</font>
            </td>
          </tr>
          <tr>
            <td class="content">
              <p align="right"><font size="2" face="돋움">
-              <a class="list" href="mailto:ein1027@nate.com">나종민</a> / <font size="2" face="돋움">2007-1022 / 2번 읽음</font>
-             <p>
-             내용이 들어가는 부분<p><!--contents의 내용을 <BR>태그로 처리-->
+              <a class="list" href="mailto:ein1027@nate.com">${dto.name}</a> / <font size="2" face="돋움">${dto.regdate} / ${dto.readcnt}번 읽음</font>
+             <p>${dto.contents}<p><!--contents의 내용을 <BR>태그로 처리-->
            </td>
          </tr>
        </table>
@@ -49,18 +53,15 @@
       <p align="center">
       <font size="2">
        <!-- 새글쓰기 -->
-       <a href="">
-       <img src="/PhotoBoard/img/write.jpg" border="0"></a>&nbsp;&nbsp;
-	   <!-- 답글쓰기 -->
-       <a href="">
-       <img src="/PhotoBoard/img/reply.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="board_write.do">
+       <img src="/BoardPhoto/img/write.jpg" border="0"></a>&nbsp;&nbsp;
 	   <!-- 수정하기 -->
-       <a href="">
-       <img src="/PhotoBoard/img/edit.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="board_modify.do?idx=${dto.idx}">
+       <img src="/BoardPhoto/img/edit.gif" border="0"></a>&nbsp;&nbsp;
          <!-- 삭제하기 -->
-       <a href=""><img src="/PhotoBoard/img/del.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="javascript:board_del()"><img src="/BoardPhoto/img/del.gif" border="0"></a>&nbsp;&nbsp;
        <!-- 목록보기 -->
-       <a href=""><img src="/PhotoBoard/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="board_list.do"><img src="/BoardPhoto/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
       </font>
     </td>
   </tr>

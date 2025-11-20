@@ -28,11 +28,6 @@
 	});
 
 	function pboard_send(){
-		if(!pboard.name.value){
-			alert("이름을 입력하세요");
-			pboard.name.focus();
-			return;
-		}
 		if(pboard.subject.value==""){
 			alert("제목을 입력하세요");
 			pboard.subject.focus();
@@ -65,17 +60,17 @@
 
    <td width="80%" valign="top">&nbsp;<br>
      <img src="/BoardPhoto/img/bullet-01.gif"><font size="3" face="돋움" color="blue"> <b>반갑습니다</b></font>
-     <font size="2"> - 글쓰기</font><p>
+     <font size="2"> - 글수정</font><p>
      <img src="/BoardPhoto/img/bullet-03.gif"><font size="2" face="돋움" color="orange"> 잠깐</font> &nbsp;
      <img src="/BoardPhoto/img/bullet-02.gif"><font size="2" face="돋움">는 필수 입력 사항입니다.</font><p>
-     <form name="pboard" method="post" action="board_write.do">
-
+     <form name="pboard" method="post" action="board_modify.do">
+		<input type="hidden" name="idx" value="${dto.idx}">
 	  <table border="0">
        <tr>
          <td width="5%" align="right"><img src="/BoardPhoto/img/bullet-02.gif"></td>
-         <td width="15%"><font size="2 face="돋움"">글쓴이</font></td>
+         <td width="15%"><font size="2 face="돋움">글쓴이</font></td>
          <td width="80%">
-         <input type="text" size="20" name="name"></td>
+         <input type="text" size="20" name="name" value="${dto.name}" readonly></td>
        </tr>
        <tr>
          <td align="right">&nbsp;</td>
@@ -86,12 +81,12 @@
 	   <tr>
          <td align="right"><img src="/BoardPhoto/img/bullet-02.gif"></td>
          <td><font size="2" face="돋움">제목</font></td>
-         <td><input type="text" size="60" name="subject" ></td>
+         <td><input type="text" size="60" name="subject" value="${dto.subject}"></td>
        </tr>
        <tr>
          <td align="right"><img src="/BoardPhoto/img/bullet-02.gif"></td>
          <td><font size="2" face="돋움">내용</font></td>
-         <td><textarea wrap="physical" rows="10" id="summernote" name="contents" cols="60"></textarea></td>
+         <td><textarea wrap="physical" rows="10" id="summernote" name="contents" cols="60">${dto.contents}</textarea></td>
        </tr>
 	   <tr>
          <td align="right"><img src="/BoardPhoto/img/bullet-02.gif"></td>

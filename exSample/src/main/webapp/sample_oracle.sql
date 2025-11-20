@@ -244,7 +244,7 @@ CREATE TABLE tbl_photoboard (
   pass varchar(20) NOT NULL ,			--  비밀번호
   subject varchar(100) NOT NULL ,		--  제목
   contents longtext,				--  내용+이미지(사진)
-  regdate datetime default sysdate,			--  등록일자
+  regdate datetime default current_timestamp,			--  등록일자
   readcnt int default 0 ,				--  조회수
   PRIMARY KEY  (idx)
 );
