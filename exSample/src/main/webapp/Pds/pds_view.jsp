@@ -16,6 +16,11 @@
    	function pds_delete(){
    		alert("삭제 창");
    	}
+   	
+   	function pds_down(url){
+   		var encURL = encodeURL(url,"UTF-8");
+   		location.href="pds_down.do?filename="+encURL;
+   	}
    </script>
  </head>
 
@@ -51,7 +56,8 @@
 			${dto.name} / ${dto.regdate} / ${dto.readcnt}번 읽음
     <p>${dto.contents}<p>
  <c:if test="${!empty dto.filename }">   
-    <img src="./img/disk.gif" align="middle" width="22" height="20" border="0">&nbsp;${dto.filename}
+    <img src="./img/disk.gif" align="middle" width="22" height="20" border="0">&nbsp;
+    <a href="javascript:pds_down('${dto.filename}')">${dto.filename}</a>
  </c:if>	
 	</font></td></tr>
   </table>

@@ -117,7 +117,7 @@ public class PdsModifyServlet extends HttpServlet {
 			}
 		}
 		
-		int row = dao.pdsDelete(dto);
+		int row = dao.pdsModify(dto);		
 		
 		request.setAttribute("row", row);
 		
