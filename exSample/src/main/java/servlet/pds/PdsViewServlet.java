@@ -1,7 +1,6 @@
 package servlet.pds;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import model.pds.PdsDAO;
 import model.pds.PdsDTO;
 
 /**
- * Servlet implementation class PdsListServlet
+ * Servlet implementation class PdsViewServlet
  */
-@WebServlet("/Pds/pds_list.do")
-public class PdsListServlet extends HttpServlet {
+@WebServlet("/Pds/pds_view.do")
+public class PdsViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PdsListServlet() {
+    public PdsViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +31,18 @@ public class PdsListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		
 		PdsDAO dao = PdsDAO.getInstance();
+		PdsDTO dto = dao.pdsSelect(idx);//DB에서 idx에 해당하는 글 검색
+		// 글내용 줄바꿈 처리
+		dto.setContents(dto.getContents().replace("\n", "<br>"));
 		
-		List<PdsDTO> list = dao.pdsList();
+		request.setAttribute("dto", dto);
 		
-		request.setAttribute("list", list);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/Pds/pds_list.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("pds_view.jsp");
 		rd.forward(request, response);
+	
 	}
 
 	/**

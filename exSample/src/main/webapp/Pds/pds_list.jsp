@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="/Include/topmenu.jsp" %>
 
@@ -41,25 +42,19 @@
         <td width="10%" align="center" height="20"><font face="돋움" size="2">올린이</font></td>
         <td width="11%" align="center" height="20"><font face="돋움" size="2">날짜</font></td>
         <td width="5%" align="center" height="20"><font face="돋움" size="2">조회</font></td></tr>
-
+<c:forEach var="dto" items="${list}">
       <tr onMouseOver="style.backgroundColor='#D1EEEE'" onMouseOut="style.backgroundColor=''">
         <td align="center" height="25">
-        <font face="돋움" size="2" color="#000000">15</font></td>
-				<td align="left" height="20">&nbsp;<font face="돋움" size="2">좋은하루 되세요</font></td>
-        <td align="center" height="20"><font face="돋움" size="2">test.zip</td>
-				<td align="left" height="20"><font face="돋움" size="2">홍길동</font></td>
-				<td align="left" height="20"><font face="돋움" size="2">2007-10-11</font></td>
-				<td align="center" height="20"><font face="돋움" size="2">1</font></td> 	      
-			</tr>  	   
-      <tr onMouseOver="style.backgroundColor='#D1EEEE'" onMouseOut="style.backgroundColor=''">
-        <td align="center" height="25">
-        <font face="돋움" size="2" color="#000000">14</font></td>
-				<td align="left" height="20">&nbsp;<font face="돋움" size="2">우리들의 이야기</font></td>
-        <td align="center" height="20"><font face="돋움" size="2">&nbsp;</td>
-				<td align="left" height="20"><font face="돋움" size="2">홍길동</font></td>
-				<td align="left" height="20"><font face="돋움" size="2">2007-10-09</font></td>
-				<td align="center" height="20"><font face="돋움" size="2">3</font></td> 	      
-			</tr>  	   
+        <font face="돋움" size="2" color="#000000">${dto.idx}</font></td>
+		<td align="left" height="20">&nbsp;<font face="돋움" size="2"><a href="pds_view.do?idx=${dto.idx}">${dto.subject}</a></font></td>
+        <td align="center" height="20"><font face="돋움" size="2">
+        	${dto.filename}
+        </td>
+		<td align="left" height="20"><font face="돋움" size="2">${dto.name}</font></td>
+		<td align="left" height="20"><font face="돋움" size="2">${dto.regdate}</font></td>
+		<td align="center" height="20"><font face="돋움" size="2">${dto.readcnt}</font></td> 	      
+	  </tr>  	   
+</c:forEach>      
 	 <div align="center">
         <table width="700" border="0" cellspacing="0" cellpadding="5">
           <tr>&nbsp;</tr><tr>
@@ -91,7 +86,7 @@
 				</table>
 			</td>
 			<td width="25%" align="right">
-			<a href="#"><img src="/Board/img/write.gif" border="0"></a>
+			<a href="pds_write.do"><img src="/Board/img/write.gif" border="0"></a>
 			</td>
 		</tr>
 	</table>
