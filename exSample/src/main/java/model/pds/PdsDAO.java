@@ -39,6 +39,27 @@ public class PdsDAO {
 		}
 		return row;
 	}
+	//특정 조건에 맞는 글수 카운트
+	public int pdsCount(String search, String key) {
+		int row=0;
+		String sql="select count(*) as counter from tbl_pds "
+				+ "	where " + search + " like ?";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+key+"%");
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				row = rs.getInt("counter");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return row;
+	}
 	//전체목록
 	public List<PdsDTO> pdsList() {
 		List<PdsDTO> list = new ArrayList();
@@ -47,6 +68,36 @@ public class PdsDAO {
 		try {
 			conn = DBManager.getConn();
 			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PdsDTO dto = new PdsDTO();
+				dto.setIdx(rs.getInt("idx"));
+				dto.setName(rs.getString("name"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setReadcnt(rs.getInt("readcnt"));
+				dto.setFilename(rs.getString("filename"));
+				
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+
+	//특정조건에 맞는 글 목록
+	public List<PdsDTO> pdsList(String search, String key) {
+		List<PdsDTO> list = new ArrayList();
+		
+		String sql="select * from tbl_pds where " + search + " like ? order by idx desc";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+key+"%");
 			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -142,6 +193,49 @@ public class PdsDAO {
 			DBManager.close(conn, pstmt);
 		}
 		return row;
+	}
+	
+	//삭제
+	public int pdsDelete(int idx, String pass) {
+		int row=0;
+		String sql="delete from tbl_pds where idx = ? and pass = ?";
+		
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.setString(2, pass);
+			
+			row = pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+		return row;
+	}
+	
+	// 첨부파일 검사
+	public String pdsFileSearch(int idx) {
+		String filename = "";
+		
+		String sql="select filename from tbl_pds where idx = ?";
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				filename = rs.getString("filename");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return filename;
 	}
 	
 }

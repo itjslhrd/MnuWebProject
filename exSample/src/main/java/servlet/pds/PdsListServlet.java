@@ -34,8 +34,10 @@ public class PdsListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PdsDAO dao = PdsDAO.getInstance();
 		
+		int totcount = dao.pdsCount();
 		List<PdsDTO> list = dao.pdsList();
 		
+		request.setAttribute("totcount", totcount);
 		request.setAttribute("list", list);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Pds/pds_list.jsp");
@@ -46,8 +48,24 @@ public class PdsListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		String search = request.getParameter("search");
+		String key = request.getParameter("key");
+		
+		PdsDAO dao = PdsDAO.getInstance();
+		
+		int totcount = dao.pdsCount(search, key);
+		List<PdsDTO> list = dao.pdsList(search, key);
+		
+		request.setAttribute("totcount", totcount);
+		request.setAttribute("list", list);
+		request.setAttribute("search", search);
+		request.setAttribute("key", key);
+
+		RequestDispatcher rd = request.getRequestDispatcher("/Pds/pds_list.jsp");
+		rd.forward(request, response);
+	
 	}
 
 }

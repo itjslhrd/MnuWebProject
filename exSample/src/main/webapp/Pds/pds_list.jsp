@@ -10,6 +10,16 @@
 	<style type="text/css">
 		a.list {text-decoration:none;color:black;font-size:10pt;}
 	</style>
+	<script>
+		function pds_search(){
+			if(!pds.key.value){
+				alert("검색어를 입력하세요");
+				pds.key.focus();
+				return;
+			}
+			pds.submit();
+		}
+	</script>
    </head> 
 
 <!-- 제목 부분 출력 -->
@@ -32,7 +42,7 @@
         <img src="./img/bullet-01.gif"> <b>참 좋은 자료들</b></font></td></tr>
       <tr>
         <td colspan="7" align="right" valign="middle" height="20">
-		  <font size="2" face="고딕">전체 : <b>5</b>건 </font>
+		  <font size="2" face="고딕">전체 : <b>${totcount}</b>건 </font>
 		</td>
 	  </tr>
 	  <tr bgcolor="e3e9ff">
@@ -69,18 +79,18 @@
 			<td width="25%"> &nbsp;</td>
 			<td width="50%" align="center">
 				<table>
-					<form>	
+					<form name="pds" method="post" action="pds_list.do">	
 					<!-- 검색어를 이용하여 글제목, 작성자, 글내용 중에 하나를 입력 받아 처리하기 위한 부분 -->
 						<tr>
 							<td>
 								<select name="search">
-									<option value="">글제목</option>
-									<option value="">작성자</option>
-									<option value="">글내용</option>
+									<option value="subject" <c:if test="${search=='subject'}"> selected </c:if>>글제목</option>
+									<option value="name" <c:if test="${search=='name'}"> selected </c:if>>작성자</option>
+									<option value="contents" <c:if test="${search=='contents'}"> selected </c:if>>글내용</option>
 								</select>
 							</td>
-							<td> <input type="text" size=20 name=""></td>
-							<td> <a href="#"><img src="/Board/img/search2.gif" border="0"></a></td>
+							<td> <input type="text" size=20 name="key" value="${key}"></td>
+							<td> <a href="javascript:pds_search()"><img src="/Board/img/search2.gif" border="0"></a></td>
 						</tr>
 					</form>
 				</table>

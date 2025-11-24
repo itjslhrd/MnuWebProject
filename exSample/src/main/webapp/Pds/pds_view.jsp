@@ -14,11 +14,13 @@
    </style>
    <script>
    	function pds_delete(){
-   		alert("삭제 창");
+   		var url="pds_delete.do?idx="+${dto.idx};
+   		window.open(url,"자료실삭제","width=300, height=250");
    	}
    	
    	function pds_down(url){
-   		var encURL = encodeURL(url,"UTF-8");
+   		//alert("AAA");
+   		var encURL = encodeURI(url,"UTF-8");
    		location.href="pds_down.do?filename="+encURL;
    	}
    </script>
@@ -65,13 +67,10 @@
   <font size="2">
   	<a href="pds_modify.do?idx=${dto.idx}"><button>수정</button></a>
   	<button onClick="pds_delete()">삭제</button>
+  	<!--  <a href="pds_delete.do?idx=${dto.idx}"><button>삭제</button></a>  -->
   	<a href="pds_list.do"><button>목록</button></a>
   	
   </font></td></tr>  
 </table>  
 </body>  
-</html>
-
-
-</body>
 </html>
