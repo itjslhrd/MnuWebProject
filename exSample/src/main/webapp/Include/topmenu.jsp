@@ -23,19 +23,19 @@
      
      <td bgcolor="#9966ff" width="10%" height="25" onmouseover="style.backgroundColor='#2772D3'" onmouseout="style.backgroundColor=''">
     <c:if test="${empty user}"> 
-     <p align="center"><font color="white" size="2"><b><a href="/Users/user_login.jsp" class="white">로그인</A></b></font></p>
+     <p align="center"><font color="white" size="2"><b><a href="/User/user_login.do" class="white">로그인</A></b></font></p>
     </c:if>
     <c:if test="${!empty user}"> 
-     <p align="center"><font color="white" size="2"><b><a href="" class="white">로그아웃</A></b></font></p>
+     <p align="center"><font color="white" size="2"><b><a href="/User/user_logout.do" class="white">로그아웃</A></b></font></p>
     </c:if> 
      </td>
      
      <td bgcolor="#9966ff" width="10%" onmouseover="style.backgroundColor='#2772D3'" onmouseout="style.backgroundColor=''">
    <c:if test="${empty user}">   
-     <p align="center"><font color="white" size="2"><b><a href="/Users/user_insert.jsp" class="white">회원가입</a></b></font></p>
+     <p align="center"><font color="white" size="2"><b><a href="/User/user_write.do" class="white">회원가입</a></b></font></p>
     </c:if>
     <c:if test="${!empty user}">  
-     <p align="center"><font color="white" size="2"><b><a href="/Users/user_modify.jsp" class="white">정보수정</a></b></font></p>
+     <p align="center"><font color="white" size="2"><b><a href="/User/user_modify.do" class="white">정보수정</a></b></font></p>
     </c:if> 
      </td>
      
