@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 <head>
@@ -29,22 +31,24 @@ A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underlin
 			</table><br>
 			<table width="80%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-                    <td height="20">* 총 등록수 : <font color=red>33</font> 건</td>
+                    <td height="20">* 총 등록수 : <font color=red>${totcount}</font> 건</td>
                 </tr>
                 <tr>
                     <td><table width="100%" border="0" cellpadding="6" cellspacing="1" bgcolor="DDDDDD">
                       <tr bgcolor="EcECEC">
                         <td width="15%" align="center" bgcolor="EcECEC"><strong>번호</strong></td>
 						<td align="center" bgcolor="EcECEC"><strong>제목</strong></td>
-                        <td width="20%" align="center"><strong>접수일</strong></td>
+                        <td width="20%" align="center"><strong>등록일</strong></td>
                         <td width="10%" align="center"><strong>조회수</strong></td>
                       </tr>
+                  <c:forEach var="nDto" items="${nList }">    
                       <tr>
-                        <td align="center" bgcolor="#FFFFFF">1</td>
-                        <td bgcolor="#FFFFFF"><a href="" class="unnamed1">안녕하세요</a></td>
-                        <td align="center" bgcolor="#FFFFFF">2007-11-11</td>
-						<td align="center" bgcolor="#FFFFFF">3</td>
+                        <td align="center" bgcolor="#FFFFFF">${nDto.idx}</td>
+                        <td bgcolor="#FFFFFF"><a href="" class="unnamed1">${nDto.subject }</a></td>
+                        <td align="center" bgcolor="#FFFFFF">${nDto.regdate}</td>
+						<td align="center" bgcolor="#FFFFFF">${nDto.readcnt}</td>
                       </tr>
+                  </c:forEach>   
 	                     <tr>
                         <td height="35" colspan="10" align="center" bgcolor="#FFFFFF">[1][2][3]</td>
                       </tr>

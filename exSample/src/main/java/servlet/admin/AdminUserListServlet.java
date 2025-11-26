@@ -1,4 +1,4 @@
-package servle;
+package servlet.admin;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,22 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.board.BoardDAO;
-import model.board.BoardDTO;
-import model.notice.NoticeDAO;
-import model.notice.NoticeDTO;
+import model.user.UserDAO;
+import model.user.UserDTO;
 
 /**
- * Servlet implementation class IndexServlet
+ * Servlet implementation class AdminUserListServlet
  */
-@WebServlet("/index.do")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/Admin/user_list.do")
+public class AdminUserListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexServlet() {
+    public AdminUserListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +32,17 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NoticeDAO ndao = NoticeDAO.getInstance();
-		BoardDAO bdao = BoardDAO.getInstance();
+
+		UserDAO dao = UserDAO.getInstance();
 		
-		List<NoticeDTO> nList = ndao.noticeList(3);
-		request.setAttribute("nList", nList);
+		int totcount = dao.userCount();
+		List<UserDTO> uList = dao.userList();
 		
-		List<BoardDTO> bList = bdao.boardList(3);
-		request.setAttribute("bList", bList);
+		request.setAttribute("totcount",totcount);
+		request.setAttribute("uList",uList);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("user_list.jsp");
 		rd.forward(request, response);
-	
 	}
 
 	/**

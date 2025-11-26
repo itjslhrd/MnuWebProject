@@ -3,6 +3,8 @@ package model.user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import util.DBManager;
 
@@ -16,6 +18,52 @@ public class UserDAO {
 	private static UserDAO instance = new UserDAO();
 	public static UserDAO getInstance() {
 		return instance;
+	}
+	//전체 회원 카운트
+	public int userCount() {
+		int row = 0;
+		String sql="select count(*) from tbl_user";
+		
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				row = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return row;
+	}
+	//전체회원 목록
+	public List<UserDTO> userList(){
+		List<UserDTO> list = new ArrayList();
+		String sql="select * from tbl_user order by first_time desc";
+		
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				UserDTO dto = new UserDTO();
+				dto.setName(rs.getString("name"));
+				dto.setUserid(rs.getString("userid"));
+				dto.setTel(rs.getString("tel"));
+				dto.setFirst_time(rs.getString("first_time"));
+				dto.setLast_time(rs.getString("last_time"));
+				
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return list;
+		
 	}
 	
 	//id 중복검사 메소드

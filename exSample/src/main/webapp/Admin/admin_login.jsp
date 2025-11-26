@@ -14,10 +14,25 @@ A:active {font-family:tahoma;font-size:9pt;color:#666666;text-decoration:none;}
 A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underline;} 
 --> 
 </style> 
+<script>
+	function admin_send(){
+		if(!admin.adminid.value){
+			alert("관리자 아이디를 입력하세요");
+			admin.adminid.focus();
+			return;
+		}
+		if(!admin.adminpass.value){
+			alert("관리자 비번를 입력하세요");
+			admin.adminpass.focus();
+			return;
+		}
+		admin.submit();
+	}
+</script>
 </head>
 <body text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
-<form name="frm" method="post" >
+<form name="admin" method="post" action="admin_login.do">
   <tr>
     <td><table width="100%" height="420" border="0" cellpadding="0" cellspacing="0" background="img/bg.gif">
         <tr> 
@@ -57,7 +72,7 @@ A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underlin
                           <tr> 
                             <td><img src="img/admin_img09.gif" alt="도메인" width="64" height="19" align="absmiddle"> 
                               <input name="domain" type="text" style="width:140px;" value="websnet.net" readonly></td>
-                            <td width="61" rowspan="3"><input type='image' src="img/admin_img12.gif" alt="connect" value="submit" width="61" height="63" border="0" onfocus=blur()></a></td>
+                            <td width="61" rowspan="3"><img src="img/admin_img12.gif" alt="connect" width="61" height="63" border="0" onClick="admin_send()"></td>
                           </tr>
                           <tr> 
                             <td><img src="img/admin_img10.gif" alt="관리계정" width="64" height="19" align="absmiddle"> 

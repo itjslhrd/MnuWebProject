@@ -6,7 +6,7 @@
    <head><title>포토 겔러리 작성</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
-  </script>	
+
 </head>
  <body topmargin="0" leftmargin="0">
  <table border="0" width="800">

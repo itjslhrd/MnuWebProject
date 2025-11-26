@@ -82,7 +82,7 @@
 		<tr>
 		  <td align="right"><img src="./img/bullet-02.gif"></td>
 		  <td><font size="2" face="돋움">파일첨부</font></td>
-		  <td><input type="file" name="filename" size="30"></td></tr>
+		  <td><input type="file" name="filename" size="30" ></td></tr>
 		<tr>
        <tr>
          <td align="right"><img src="./img/bullet-02.gif"></td>

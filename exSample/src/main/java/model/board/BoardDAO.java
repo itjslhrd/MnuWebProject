@@ -22,6 +22,37 @@ public class BoardDAO {
  		return instance;
  	}
 
+ 	//체근 게시물 3개 
+ 	public List<BoardDTO> boardList(int num) {
+ 		//반환타입
+ 		List<BoardDTO> list = new ArrayList();
+ 		//쿼리
+ 		String sql = "select * from tbl_board order by regdate desc limit 0,?";
+ 		
+ 		try {
+ 			conn = DBManager.getConn();
+ 			pstmt = conn.prepareStatement(sql);
+ 			pstmt.setInt(1, num);
+ 			rs = pstmt.executeQuery();
+ 			
+ 			while(rs.next()) {
+ 				BoardDTO dto = new BoardDTO();
+ 				dto.setIdx(rs.getInt("idx"));
+ 				dto.setName(rs.getString("name"));
+ 				dto.setSubject(rs.getString("subject"));
+ 				dto.setRegdate(rs.getString("regdate"));
+ 				dto.setReadcnt(rs.getInt("readcnt"));
+ 				
+ 				list.add(dto);
+ 			}
+ 		}catch(Exception e) {
+ 			e.printStackTrace();
+ 		}finally {
+ 			DBManager.close(conn, pstmt, rs);
+ 		}
+ 		return list;
+ 	}
+ 	
  	//1. 전체 게시글수 카운트
  	public int boardCount() {
  		//반환타입

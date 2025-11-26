@@ -1,0 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+<style type="text/css">
+.flex-container {
+  display: flex;
+}
+
+.wrapper {
+  text-align: center;
+  flex-grow: 1;
+  
+  .image-box {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 20px auto;
+  }
+
+  .upload-btn {
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    display: inline-block;
+    cursor: pointer;
+
+    input[type=file] {
+      display: none;
+    }
+  }
+}
+</style>
+<script>
+const fileDOM = document.querySelector('#file');
+const previews = document.querySelectorAll('.image-box');
+
+fileDOM.addEventListener('change', () => {
+  const reader = new FileReader();
+  reader.onload = ({ target }) => {
+    previews[0].src = target.result;
+  };
+  reader.readAsDataURL(fileDOM.files[0]);
+});
+
+const fileDOM2 = document.querySelector('#file2');
+
+fileDOM2.addEventListener('change', () => {
+  const imageSrc = URL.createObjectURL(fileDOM2.files[0]);
+  previews[1].src = imageSrc;
+});
+
+</script>
+
+</head>
+<body>
+<div class="flex-container">
+  <div class="wrapper">
+    <h2>FileReader</h2>
+    <img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" class="image-box" />
+    <label for="file" class="upload-btn">
+      <input id="file" type="file" accept="image/*" />
+      <span>Upload Image</span>
+    </label>
+  </div>
+  <div class="wrapper">
+    <h2>URL API</h2>
+    <img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" class="image-box" />
+    <label for="file2" class="upload-btn">
+      <input id="file2" type="file" accept="image/*" />
+      <span>Upload Image</span>
+    </label>
+  </div>
+</div>
+</body>
+</html>

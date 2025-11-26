@@ -1,4 +1,4 @@
-package servle;
+package servlet.admin;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,20 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.board.BoardDAO;
 import model.board.BoardDTO;
-import model.notice.NoticeDAO;
-import model.notice.NoticeDTO;
 
 /**
- * Servlet implementation class IndexServlet
+ * Servlet implementation class AdminBoardListServlet
  */
-@WebServlet("/index.do")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/Admin/board_list.do")
+public class AdminBoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexServlet() {
+    public AdminBoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +32,17 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NoticeDAO ndao = NoticeDAO.getInstance();
-		BoardDAO bdao = BoardDAO.getInstance();
+		BoardDAO dao = BoardDAO.getInstance();
 		
-		List<NoticeDTO> nList = ndao.noticeList(3);
-		request.setAttribute("nList", nList);
+		int totcount = dao.boardCount();
+		List<BoardDTO> bList = dao.boardList();
 		
-		List<BoardDTO> bList = bdao.boardList(3);
-		request.setAttribute("bList", bList);
+		request.setAttribute("totcount",totcount);
+		request.setAttribute("bList",bList);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("board_list.jsp");
 		rd.forward(request, response);
-	
+		
 	}
 
 	/**

@@ -20,6 +20,35 @@ public class NoticeDAO {
 	public static NoticeDAO getInstance() {
 		return instance;
 	}
+
+	//공지사항 최근글 n개
+	public List<NoticeDTO> noticeList(int num) {
+		List<NoticeDTO> nList = new ArrayList();
+		String sql="select * from tbl_notice order by idx desc limit 0,?";
+		
+		try {
+			conn = DBManager.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				NoticeDTO nDto = new NoticeDTO();
+				nDto.setIdx(rs.getInt("idx"));
+				nDto.setAdid(rs.getString("adid"));
+				nDto.setSubject(rs.getString("subject"));
+				nDto.setRegdate(rs.getString("regdate"));
+				nDto.setReadcnt(rs.getInt("readcnt"));
+				
+				nList.add(nDto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return nList;
+	}
 	
 	//공지사항 전체 게시글수 카운트
 	public int noticeCount() {
