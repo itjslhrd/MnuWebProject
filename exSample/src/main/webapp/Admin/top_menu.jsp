@@ -38,7 +38,7 @@ A:hover {font-family:tahoma;font-size:9pt;color:#000000;text-decoration:underlin
         	<P><a href="admin.do">[관리자 관리]</a></P>
       </TD>
       <TD width="100"> 
-        <P><a href="logout.do">로그아웃</a></P>
+        <P><a href="admin_logout.do">로그아웃</a></P>
       </TD>
     </TR>
   </TABLE>
