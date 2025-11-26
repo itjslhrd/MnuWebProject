@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class AdminLoginServlet
  */
-@WebServlet("/Admin/admin_login.do")
+@WebServlet("/AdminLogin/admin_login.do")
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,10 +29,15 @@ public class AdminLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		RequestDispatcher rd = request.getRequestDispatcher("/Admin/admin_login.jsp");
+		/*
+		// Filter 미 적용시 필요
+		String url="/Admin/notice_list.jsp";
+		if(request.getSession().getAttribute("admin")==null) {
+			url = "/AdminLogin/admin_login.jsp";
+		}
+		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
-	
+		*/	
 	}
 
 	/**
@@ -49,7 +54,7 @@ public class AdminLoginServlet extends HttpServlet {
 			
 			//RequestDispatcher rd = request.getRequestDispatcher("/Admin/notice_list.jsp");
 			//rd.forward(request, response);
-			response.sendRedirect("notice_list.do");
+			response.sendRedirect("/Admin/notice_list.do");
 		}else {
 			response.sendRedirect("admin_login.do");
 		}

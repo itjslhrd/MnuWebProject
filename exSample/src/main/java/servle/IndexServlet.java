@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import model.board.BoardDAO;
 import model.board.BoardDTO;
 import model.notice.NoticeDAO;
 import model.notice.NoticeDTO;
+
 
 /**
  * Servlet implementation class IndexServlet

@@ -55,7 +55,7 @@
      <p align="center"><font color="white" size="2"><b><a href="/Gallery/gallery_list.do" class="white">겔러리</a></b></font></p>
      </td>
      <td bgcolor="#9966ff" width="10%" onmouseover="style.backgroundColor='#2772D3'" onmouseout="style.backgroundColor=''">
-     <p align="center"><font color="white" size="2"><b><a href="/Admin/admin_login.do" class="white">관리자</a></b></font></p>
+     <p align="center"><font color="white" size="2"><b><a href="/Admin/notice_list.do" class="white">관리자</a></b></font></p>
      </td>
    </tr>                   
    <tr>
