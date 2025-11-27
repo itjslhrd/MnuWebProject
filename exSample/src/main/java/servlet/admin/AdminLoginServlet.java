@@ -51,7 +51,8 @@ public class AdminLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("admin", "홍길동");
 			session.setMaxInactiveInterval(1800);//세션유지시간30분
-			
+			//String name = (String)session.getAttribute("admin");//세션값 
+		
 			//RequestDispatcher rd = request.getRequestDispatcher("/Admin/notice_list.jsp");
 			//rd.forward(request, response);
 			response.sendRedirect("/Admin/notice_list.do");
