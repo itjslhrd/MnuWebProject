@@ -91,7 +91,10 @@ public class PageIndex {
 	  	}
 		// Next 표시부분
 	  	if(idx_start <= totpage ) {
-	  		s_next = "<a class='list' href='"+url+"?page="+idx_start+ "&search="+query+"&key="+ URLEncoder.encode(key)+"'>"
+	  		//s_next = "<a class='list' href='"+url+"?page="+idx_start+ "&search="+query+"&key="+ URLEncoder.encode(key)+"'>"
+	  		//		+ " >> </a>";
+	  		//MVC 일 경우
+	  		s_next = "<a class='list' href='"+url+"&page="+idx_start+ "&search="+query+"&key="+ URLEncoder.encode(key)+"'>"
 	  				+ " >> </a>";
 	  	} else {
 	  		s_next = " >> ";
