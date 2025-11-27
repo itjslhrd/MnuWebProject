@@ -11,7 +11,12 @@
      td.content { padding:10px; line-height:1.6em; text-align:justify; }
      a.list { text-decoration:none;color:black;font-size:10pt; }
    </style>
-
+<script>
+	function board_delete(){
+		url="/Board?cmd=board_delete_pro&page=${page}&idx=${boardDTO.idx}";
+		window.open(url, "board_delete","width=300, height=200");		
+	}
+</script>
  </head>
  <body topmargin="0" leftmargin="0">
    <table border="0" width="800">
