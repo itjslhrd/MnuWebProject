@@ -33,15 +33,15 @@
          <tr bgcolor="e3e9ff">
            <td class="title">
              <img src="/Notice/img/bullet-04.gif"> <font size="2" face="돋움">
-                  제목부분</font>
+                  ${noticeDTO.subject}</font>
            </td>
          </tr>
          <tr>
            <td class="content">
              <p align="right"><font size="2" face="돋움">
-              관리자 / <font size="2" face="돋움">2007-1022 / 2번 읽음</font>
-             <p>
-             내용이 들어가는 부분<p><!--contents의 내용을 <BR>태그로 처리-->
+              관리자 / <font size="2" face="돋움">${noticeDTO.regdate} / ${noticeDTO.readcnt}번 읽음</font>
+             <p>${noticeDTO.contents}
+             <p><!--contents의 내용을 <BR>태그로 처리-->
            </td>
          </tr>
        </table>
@@ -50,7 +50,7 @@
       <p align="center">
       <font size="2">
        <!-- 목록보기 -->
-       <a href=""><img src="/Notice/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="/Notice?cmd=notice_list"><img src="/Notice/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
       </font>
     </td>
   </tr>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ include file="/Include/topmenu.jsp" %>
+
  <html>
  <head><meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
    <title>게시판 내용 보기</title>
@@ -23,7 +24,7 @@
        <td width="80%" valign="top">&nbsp;<br>
          <table border="0" width="90%" align="center">
            <tr>
-             <td colspan="2"><img src="/Board/img/bullet-01.gif"> 
+             <td colspan="2"><img src="images/bullet-01.gif"> 
               <font color="blue" size="3">자 유 게 시 판</font><font size="2"> - 글읽기</font></td>
            </tr>
          </table>
@@ -31,16 +32,15 @@
        <table border="0" width="90%" align="center" cellspacing="0"  style="border-width:1px;border-color:#0066cc;border-style:outset;">
          <tr bgcolor="e3e9ff">
            <td class="title">
-             <img src="/Board/img/bullet-04.gif"> <font size="2" face="돋움">
-                  제목부분</font>
+             <img src="images/bullet-04.gif"> <font size="2" face="돋움">
+                  ${boardDTO.subject}</font>
            </td>
          </tr>
          <tr>
            <td class="content">
              <p align="right"><font size="2" face="돋움">
-              <a class="list" href="mailto:ein1027@nate.com">나종민</a> / <font size="2" face="돋움">2007-1022 / 2번 읽음</font>
-             <p>
-             내용이 들어가는 부분<p><!--contents의 내용을 <BR>태그로 처리-->
+              <a class="list" href="mailto:ein1027@nate.com">${boardDTO.name}</a> / <font size="2" face="돋움">${boardDTO.regdate} / ${boardDTO.readcnt}번 읽음</font>
+             <p>${boardDTO.contents}<p><!--contents의 내용을 <BR>태그로 처리-->
            </td>
          </tr>
        </table>
@@ -49,18 +49,15 @@
       <p align="center">
       <font size="2">
        <!-- 새글쓰기 -->
-       <a href="">
-       <img src="/Board/img/write.jpg" border="0"></a>&nbsp;&nbsp;
-	   <!-- 답글쓰기 -->
-       <a href="">
-       <img src="/Board/img/reply.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="/Board?cmd=board_write">
+       <img src="images/write.jpg" border="0"></a>&nbsp;&nbsp;
 	   <!-- 수정하기 -->
-       <a href="">
-       <img src="/Board/img/edit.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="/Board?cmd=board_modify&idx=${boardDTO.idx}&page=${page}">
+       <img src="images/edit.gif" border="0"></a>&nbsp;&nbsp;
          <!-- 삭제하기 -->
-       <a href=""><img src="/Board/img/del.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="javascript:board_delete()"><img src="images/del.gif" border="0"></a>&nbsp;&nbsp;
        <!-- 목록보기 -->
-       <a href=""><img src="/Board/img/list-2.gif" border="0"></a>&nbsp;&nbsp;
+       <a href="/Board?cmd=board_list&page=${page}"><img src="images/list-2.gif" border="0"></a>&nbsp;&nbsp;
       </font>
     </td>
   </tr>

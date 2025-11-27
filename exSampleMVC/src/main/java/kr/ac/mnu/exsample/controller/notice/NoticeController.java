@@ -1,6 +1,7 @@
 package kr.ac.mnu.exsample.controller.notice;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.ac.mnu.exsample.service.Action;
 import kr.ac.mnu.exsample.service.notice.NoticeListService;
+import kr.ac.mnu.exsample.service.notice.NoticeViewService;
 
 /**
  * Servlet implementation class NoticeController
@@ -36,7 +38,7 @@ public class NoticeController extends HttpServlet {
 		if(cmd.equals("notice_list")) {
 			action = new NoticeListService();
 		}else if(cmd.equals("notice_view")) {
-			
+			action = new NoticeViewService();
 		}
 		
 		action.process(request, response);

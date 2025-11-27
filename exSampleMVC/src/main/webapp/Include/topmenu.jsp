@@ -12,7 +12,7 @@
  <table border="0" cellspacing="2" bgcolor="#ecf1ef" width="900" bordercolordark="#ffffff" bordercolorlight="#000000">
    <tr>
      <td width="20%" rowspan="4" valign="bottom" bgcolor="#000000">
-       <a href="/index.jsp"><img src="/Include/img/ceo.jpg" width="158" height="83" border="0"></a>
+       <a href="/index.jsp"><img src="images/ceo.jpg" width="158" height="83" border="0"></a>
        <font style="font-size:9pt;color:white;font-family:돋움"><b>Total 136,489
        <font color="yellow"></font>
        | Now 178
@@ -48,11 +48,11 @@
    </tr>                   
    <tr>
      <td colspan="8">
-     <p><img src="/Include/img/bar-01.gif" width="100%" height="1" border="0"></p>
+     <p><img src="images/bar-01.gif" width="100%" height="1" border="0"></p>
      </td>
    </tr>
    <tr>
-     <td colspan="8"><p><img src="/Include/img/bar-01.gif" width="100%" height="1" border="0"></p></td>
+     <td colspan="8"><p><img src="images/bar-01.gif" width="100%" height="1" border="0"></p></td>
    </tr>
    <tr>
      <td><p><b><span style="font-size:15pt;">&nbsp;Search</span></b></p></td>
@@ -71,7 +71,7 @@
          <option value="contents">제목
        </Select>
          <input type="text" name="keyword" size="12">
-         <input type="image" src="/Include/img/search2.gif">
+         <input type="image" src="images/search2.gif">
      </td>
      </form>
    </tr>

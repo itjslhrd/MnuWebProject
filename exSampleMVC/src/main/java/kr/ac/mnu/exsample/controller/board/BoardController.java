@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.ac.mnu.exsample.service.Action;
+
 /**
  * Servlet implementation class BoardController
  */
@@ -26,15 +28,19 @@ public class BoardController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		System.out.println("BoardController 호출됨");
+		String cmd = request.getParameter("cmd");
+		
+		BoardServiceFactory bsf = BoardServiceFactory.getInstance();
+		Action action = bsf.getAction(cmd);
+		action.process(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 

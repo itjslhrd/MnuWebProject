@@ -17,7 +17,10 @@ public class PageIndex {
 
 	  	// Prev 표시 부분
 	  	if(idx_pre > 0) {
-	  		s_pre = "<a class='list' href='"+url+"?page="+(idx_pre*maxlist)+"'>"
+	  		//s_pre = "<a class='list' href='"+url+"?page="+(idx_pre*maxlist)+"'>"
+	  		//		+ " << </a>";
+	  		//MVC 일경우
+	  		s_pre = "<a class='list' href='"+url+"&page="+(idx_pre*maxlist)+"'>"
 	  				+ " << </a>";
 	  	} else {
 	  		s_pre = " << ";
@@ -29,13 +32,19 @@ public class PageIndex {
 	  		if(idx_start == page)
 	  			s_idx = s_idx + " ["+idx_start+"] ";
 	  		else {
-	  			s_idx = s_idx + " <a class='list' href='" + url + "?page=" + idx_start;
+	  			//s_idx = s_idx + " <a class='list' href='" + url + "?page=" + idx_start;
+	  			//s_idx = s_idx + "'> [" + idx_start + "] </a> ";
+	  			//MVC일 경우
+	  			s_idx = s_idx + " <a class='list' href='" + url + "&page=" + idx_start;
 	  			s_idx = s_idx + "'> [" + idx_start + "] </a> ";
 	  		}
 	  	}
 		// Next 표시부분
 	  	if(idx_start <= totpage ) {
-	  		s_next = "<a class='list' href='"+url+"?page="+idx_start+"'>"
+	  		//s_next = "<a class='list' href='"+url+"?page="+idx_start+"'>"
+	  		//		+ " >> </a>";
+	  		//MVC 일 경우
+	  		s_next = "<a class='list' href='"+url+"&page="+idx_start+"'>"
 	  				+ " >> </a>";
 	  	} else {
 	  		s_next = " >> ";
@@ -58,7 +67,10 @@ public class PageIndex {
 
 	  	// Prev 표시 부분
 	  	if(idx_pre > 0) {
-	  		s_pre = "<a class='list' href='"+url+"?page="+(idx_pre*maxlist)+"&search="+query+"&key="+ URLEncoder.encode(key)+"'>"
+	  		//s_pre = "<a class='list' href='"+url+"?page="+(idx_pre*maxlist)+"&search="+query+"&key="+ URLEncoder.encode(key)+"'>"
+	  		//		+ " << </a>";
+	  		//MVC 일경우
+	  		s_pre = "<a class='list' href='"+url+"&page="+(idx_pre*maxlist)+"&search="+query+"&key="+ URLEncoder.encode(key)+"'>"
 	  				+ " << </a>";
 	  	} else {
 	  		s_pre = " << ";
@@ -70,7 +82,10 @@ public class PageIndex {
 	  		if(idx_start == page)
 	  			s_idx = s_idx + " ["+idx_start+"] ";
 	  		else {
-	  			s_idx = s_idx + " <a class='list' href='" + url + "?page=" + idx_start;
+	  			//s_idx = s_idx + " <a class='list' href='" + url + "?page=" + idx_start;
+	  			//s_idx = s_idx + "&search="+query+"&key=" + URLEncoder.encode(key) + "'> [" + idx_start + "] </a> ";
+	  			//MVC일 경우
+	  			s_idx = s_idx + " <a class='list' href='" + url + "&page=" + idx_start;
 	  			s_idx = s_idx + "&search="+query+"&key=" + URLEncoder.encode(key) + "'> [" + idx_start + "] </a> ";
 	  		}
 	  	}

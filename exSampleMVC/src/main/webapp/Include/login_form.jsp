@@ -26,9 +26,9 @@
        </td>
      </tr>
      <tr>
-       <td><input type="image" src="/Include/img/login1.gif" border="0" onClick="return check_login()"></td>
+       <td><input type="image" src="images/login1.gif" border="0" onClick="return check_login()"></td>
 			 <td>
-           <a href=""><img src="/Include/img/regist.gif" border="0"></a>
+           <a href=""><img src="images/regist.gif" border="0"></a>
        </td>
      </tr>
  </form>
