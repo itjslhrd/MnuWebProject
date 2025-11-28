@@ -14,21 +14,36 @@ A:active {font-family:tahoma;font-size:9pt;color:#666666;text-decoration:none;}
 A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underline;} 
 --> 
 </style> 
+<script>
+	function admin_send(){
+		if(!admin.adminid.value){
+			alert("관리자 아이디를 입력하세요");
+			admin.adminid.focus();
+			return;
+		}
+		if(!admin.adminpass.value){
+			alert("관리자 비번를 입력하세요");
+			admin.adminpass.focus();
+			return;
+		}
+		admin.submit();
+	}
+</script>
 </head>
 <body text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
-<form name="frm" method="post" >
+<form name="admin" method="post" action="/AdminLogin?cmd=admin_login_pro">
   <tr>
     <td><table width="100%" height="420" border="0" cellpadding="0" cellspacing="0" background="img/bg.gif">
         <tr> 
           <td>&nbsp;</td>
           <td width="617"><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr> 
-                <td colspan="4"><img src="img/admin_img01.gif" width="617" height="60"></td>
+                <td colspan="4"><img src="images/admin_img01.gif" width="617" height="60"></td>
               </tr>
               <tr> 
-                <td width="9"><img src="img/admin_img02.gif" width="9" height="314"></td>
-                <td width="219"><img src="img/admin_img03.gif" width="219" height="314"></td>
+                <td width="9"><img src="images/admin_img02.gif" width="9" height="314"></td>
+                <td width="219"><img src="images/admin_img03.gif" width="219" height="314"></td>
                 <td width="381" align="center" bgcolor="#FFFFFF"><table width="332" border="0" cellspacing="0" cellpadding="0">
                     <tr> 
                       <td>&nbsp;</td>
@@ -39,7 +54,7 @@ A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underlin
                     </tr>
                     <tr> 
                       <td>&nbsp;</td>
-                      <td height="65" valign="top"><img src="img/admin_img13.gif" width="154" height="26"></td>
+                      <td height="65" valign="top"><img src="images/admin_img13.gif" width="154" height="26"></td>
                       <td>&nbsp;</td>
                     </tr>
                     <tr> 
@@ -50,33 +65,33 @@ A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underlin
                       <td>&nbsp;</td>
                     </tr>
                     <tr> 
-                      <td width="12"><img src="img/admin_img06.gif" width="12" height="107"></td>
-                      <td width="308" align="center" background="img/admin_img07.gif"> 
+                      <td width="12"><img src="images/admin_img06.gif" width="12" height="107"></td>
+                      <td width="308" align="center" background="images/admin_img07.gif"> 
                         <!-- 도메인, 관리계정, 비밀번호 -->
                         <table width="275" height="63" border="0" cellpadding="0" cellspacing="0">
                           <tr> 
-                            <td><img src="img/admin_img09.gif" alt="도메인" width="64" height="19" align="absmiddle"> 
+                            <td><img src="images/admin_img09.gif" alt="도메인" width="64" height="19" align="absmiddle"> 
                               <input name="domain" type="text" style="width:140px;" value="websnet.net" readonly></td>
-                            <td width="61" rowspan="3"><input type='image' src="img/admin_img12.gif" alt="connect" value="submit" width="61" height="63" border="0" onfocus=blur()></a></td>
+                            <td width="61" rowspan="3"><img src="images/admin_img12.gif" alt="connect" width="61" height="63" border="0" onClick="admin_send()"></td>
                           </tr>
                           <tr> 
-                            <td><img src="img/admin_img10.gif" alt="관리계정" width="64" height="19" align="absmiddle"> 
+                            <td><img src="images/admin_img10.gif" alt="관리계정" width="64" height="19" align="absmiddle"> 
                               <input name="adminid" type="text" tabindex="1" style="width:140px;"></td>
                           </tr>
                           <tr> 
-                            <td><img src="img/admin_img11.gif" alt="비밀번호" width="64" height="19" align="absmiddle"> 
+                            <td><img src="images/admin_img11.gif" alt="비밀번호" width="64" height="19" align="absmiddle"> 
                               <input name="adminpass" type="password" tabindex="2" style="width:140px;"></td>
                           </tr>
                         </table>
                         <!--// 도메인, 관리계정, 비밀번호 -->
                       </td>
-                      <td width="12"><img src="img/admin_img08.gif" width="12" height="107"></td>
+                      <td width="12"><img src="images/admin_img08.gif" width="12" height="107"></td>
                     </tr>
                   </table></td>
-                <td width="8"><img src="img/admin_img04.gif" width="8" height="314"></td>
+                <td width="8"><img src="images/admin_img04.gif" width="8" height="314"></td>
               </tr>
               <tr> 
-                <td colspan="4"><img src="img/admin_img05.gif" width="617" height="46"></td>
+                <td colspan="4"><img src="images/admin_img05.gif" width="617" height="46"></td>
               </tr>
             </table></td>
           <td>&nbsp;</td>

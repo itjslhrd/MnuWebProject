@@ -1,11 +1,15 @@
 package kr.ac.mnu.exsample.controller.user;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import kr.ac.mnu.exsample.controller.admin.AdminServiceFactory;
+import kr.ac.mnu.exsample.service.Action;
 
 /**
  * Servlet implementation class UserController
@@ -26,8 +30,14 @@ public class UserController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("UserController 호출됨");
+		String cmd = request.getParameter("cmd");
+		System.out.println("UserController 호출됨" + cmd);
+		
+		
+		UserServiceFactory sf = UserServiceFactory.getInstance();
+		
+		Action action = sf.getAction(cmd);
+		action.process(request, response);
 	}
 
 	/**

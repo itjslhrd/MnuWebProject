@@ -1,4 +1,4 @@
-package kr.ac.mnu.exsample.controller.board;
+package kr.ac.mnu.exsample.controller.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.ac.mnu.exsample.controller.board.BoardServiceFactory;
 import kr.ac.mnu.exsample.service.Action;
 
 /**
- * Servlet implementation class BoardController
+ * Servlet implementation class AdminController
  */
-@WebServlet("/Board")
-public class BoardController extends HttpServlet {
+@WebServlet("/AdminLogin")
+public class AdminLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardController() {
+    public AdminLoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,19 +29,19 @@ public class BoardController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("BoardController 호출됨");
 		String cmd = request.getParameter("cmd");
+		System.out.println("AdminLoginController 호출됨 :" + cmd);
 		
-		BoardServiceFactory sf = BoardServiceFactory.getInstance();
+		AdminServiceFactory sf = AdminServiceFactory.getInstance();
 		Action action = sf.getAction(cmd);
-		action.process(request, response);
+		action.process(request, response);	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

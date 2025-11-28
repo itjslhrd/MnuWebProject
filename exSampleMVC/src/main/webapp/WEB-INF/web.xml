@@ -12,9 +12,33 @@
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
   
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/images/*</url-pattern>
-</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>default</servlet-name>
+    	<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
+
+   	<filter>
+    	<filter-name>encodingFilter</filter-name>
+    	<filter-class>kr.ac.mnu.exsample.filter.CharacterEncodingFilter</filter-class>
+    	<init-param>
+        	<param-name>encoding</param-name>
+        	<param-value>utf-8</param-value>
+     	</init-param>
+  	</filter>
+  
+  	<filter-mapping>
+    	<filter-name>encodingFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+  	</filter-mapping>
+
+  	<filter>
+  		<filter-name>LoginCheck</filter-name>
+  		<filter-class>kr.ac.mnu.exsample.filter.LoginCheckFilter</filter-class>
+  	</filter>
+  
+  	<filter-mapping>
+  		<filter-name>LoginCheck</filter-name>
+  		<url-pattern>/Admin/*</url-pattern>
+  	</filter-mapping>
 
 </web-app>
