@@ -62,7 +62,7 @@ public class UserLoginServlet extends HttpServlet {
 		
 		request.setAttribute("row", row);
 
-		RequestDispatcher rd = request.getRequestDispatcher("user_login_ok.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("user_login_pro.jsp");
 		rd.forward(request, response);
 	}
 

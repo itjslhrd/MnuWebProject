@@ -26,7 +26,7 @@ A:hover {font-family:tahoma;font-size:9pt;color:#000000;text-decoration:underlin
         <P><a href="/Admin?cmd=board_list">[게시판 관리]</a></P>
       </TD>
 			<TD width="100"> 
-        <P><a href="/Admin?cmd=member_list">[회원관리]</a></P>
+        <P><a href="/Admin?cmd=user_list">[회원관리]</a></P>
       </TD>
 			<TD width="100"> 
         <P><a href="/Admin?cmd=pds_list">[자료실 관리]</a></P>

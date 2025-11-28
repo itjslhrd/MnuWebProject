@@ -58,9 +58,9 @@ public class AdminBoardListService implements Action{
 		}
 		String pageSkip="";
 		if(key.equals("")) {
-			pageSkip = PageIndex.pageList(nowpage, totpage, "/Board?cmd=board_list", maxlist);
+			pageSkip = PageIndex.pageList(nowpage, totpage, "/Admin?cmd=board_list", maxlist);
 		}else {	
-			pageSkip = PageIndex.pageListHan(nowpage, totpage, "/Board?cmd=board_list", maxlist,search, key);
+			pageSkip = PageIndex.pageListHan(nowpage, totpage, "/Admin?cmd=board_list", maxlist,search, key);
 		}
 		request.setAttribute("totcount", totcount);
 		request.setAttribute("boardList", boardList);

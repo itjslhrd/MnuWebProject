@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 <head>
@@ -14,7 +16,17 @@ A:active {font-family:tahoma;font-size:9pt;color:#666666;text-decoration:none;}
 A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underline;} 
 --> 
 </style> 
-
+<script>
+	function board_search(){
+		if(board.key.value==""){
+			alert("검색어를 입력하세요");
+			board.key.focus();
+			return;
+		}	
+		board.submit();
+	}
+	
+</script>
 </head>
 
 <body>
@@ -30,7 +42,7 @@ A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underlin
 			</table><br>
 			<table width="80%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-                    <td height="20">* 총 등록수 : <font color=red>10</font> 건</td>
+                    <td height="20">* 총 등록수 : <font color=red>${totcount}</font> 건</td>
                   </tr>
                   <tr>
                     <td><table width="100%" border="0" cellpadding="6" cellspacing="1" bgcolor="DDDDDD">
@@ -41,33 +53,30 @@ A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underlin
                         <td width="20%" align="center"><strong>접수일</strong></td>
                         <td width="10%" align="center"><strong>조회수</strong></td>
                       </tr>
+           <c:forEach var="boardDTO" items="${boardList}">           
                       <tr>
-                        <td align="center" bgcolor="#FFFFFF">1</td>
-                        <td bgcolor="#FFFFFF">안녕하세요</td>
-                        <td align="center" bgcolor="#FFFFFF">홍길동</td>
-						<td align="center" bgcolor="#FFFFFF">2007-10-11</td>
-						<td align="center" bgcolor="#FFFFFF">3</td>
+                        <td align="center" bgcolor="#FFFFFF">${boardDTO.idx}</td>
+                        <td bgcolor="#FFFFFF">${boardDTO.subject}</td>
+                        <td align="center" bgcolor="#FFFFFF">${boardDTO.name}</td>
+						<td align="center" bgcolor="#FFFFFF">${boardDTO.regdate}</td>
+						<td align="center" bgcolor="#FFFFFF">${boardDTO.readcnt}</td>
                       </tr>
-                      <tr>
-                        <td align="center" bgcolor="#FFFFFF">1</td>
-                        <td bgcolor="#FFFFFF"><img src="../img/btn/icon_re.gif" border=0>안녕하세요</td>
-                        <td align="center" bgcolor="#FFFFFF">홍길동</td>
-						<td align="center" bgcolor="#FFFFFF">2007-10-11</td>
-						<td align="center" bgcolor="#FFFFFF">2</td>
+		   </c:forEach>                      
+	                  <tr>
+                        <td height="35" colspan="10" align="center" bgcolor="#FFFFFF">${pageSkip}</td>
                       </tr>
-	                     <tr>
-                        <td height="35" colspan="10" align="center" bgcolor="#FFFFFF"></td>
-                      </tr>
-						<form action="" method="post" name="b_search">
+						<form name="board" method="post" action="/Admin?cmd=board_list">
                       <tr>
                         <td colspan="10" align="center" bgcolor="#FFFFFF"><table width="610" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                               <td width=80% height="30" colspan="2" align="right">
 								<select name="search" class="textfield">
-									<option>제목</option>
+									<option value="subject" <c:if test="${search=='subject'}">selected </c:if>>글제목</option>
+									<option value="name" <c:if test="${search=='name'}">selected </c:if>>작성자</option>
+									<option value="contents" <c:if test="${search=='contents'}">selected </c:if>>글내용</option>
 								</select>
-								<input name="key" type="text" class="textfield" size="30"></td>
-                              <td width=20% align="right"><b>[검색]</b>  &nbsp;<a href=""><b>[글쓰기]</b></a></td>
+								<input name="key" type="text" class="textfield" size="30" value="${key}"></td>
+                              <td width=20% align="right"><a href="javascript:board_search()"><b>[검색]</b></a>  &nbsp;<a href="/Admin?cmd=board_write"><b>[글쓰기]</b></a></td>
                             </tr>
                         </table></td>
                       </tr>

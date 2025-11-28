@@ -6,6 +6,7 @@ import kr.ac.mnu.exsample.service.admin.AdminLoginService;
 import kr.ac.mnu.exsample.service.admin.AdminLogoutService;
 import kr.ac.mnu.exsample.service.admin.board.AdminBoardListService;
 import kr.ac.mnu.exsample.service.admin.notice.AdminNoticeListService;
+import kr.ac.mnu.exsample.service.admin.user.AdminUserListService;
 
 public class AdminServiceFactory {
 	//싱글톤
@@ -32,6 +33,8 @@ public class AdminServiceFactory {
 				//action = new AdminNoticeWriteProService();
 		}else if(cmd.equals("board_list")) {//게시판목록
 			action = new AdminBoardListService();
+		}else if(cmd.equals("user_list")) {//게시판목록
+			action = new AdminUserListService();
 		}
 		
 		return action;

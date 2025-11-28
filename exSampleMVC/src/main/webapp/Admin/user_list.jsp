@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 <head>
@@ -30,7 +32,7 @@ A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underlin
 			</table><br>
 			<table width="80%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-                    <td height="20">* 총 회원수 : <font color=red>10</font> 명</td>
+                    <td height="20">* 총 회원수 : <font color=red>${totcount}</font> 명</td>
                   </tr>
                   <tr>
                     <td><table width="100%" border="0" cellpadding="6" cellspacing="1" bgcolor="DDDDDD">
@@ -43,25 +45,29 @@ A:hover {font-family:tahoma;font-size:9pt;color:#009900;text-decoration:underlin
                         <td width="10%" align="center"><strong>가입일자</strong></td>
                         <td width="10%" align="center"><strong>최근로그인</strong></td>
                       </tr>
+                <c:forEach var="userDTO" items="${userList}">      
                       <tr>
                         <td align="center" bgcolor="#FFFFFF">1</td>
-                        <td bgcolor="#FFFFFF">홍길동</td>
-                        <td align="center" bgcolor="#FFFFFF">user01</td>
-						<td align="center" bgcolor="#FFFFFF">abc@naver.com</td>
-						<td align="center" bgcolor="#FFFFFF">3010-1111-2222</td>
-						<td align="center" bgcolor="#FFFFFF">2020-01-01</td>
-						<td align="center" bgcolor="#FFFFFF">2020-01-22</td>
+                        <td bgcolor="#FFFFFF">${userDTO.name}</td>
+                        <td align="center" bgcolor="#FFFFFF">${userDTO.userid}</td>
+						<td align="center" bgcolor="#FFFFFF">${userDTO.email}</td>
+						<td align="center" bgcolor="#FFFFFF">${userDTO.tel}</td>
+						<td align="center" bgcolor="#FFFFFF">${userDTO.first_time}</td>
+						<td align="center" bgcolor="#FFFFFF">${userDTO.last_time}</td>
                       </tr>
+               </c:forEach>       
 	                  <tr>
                         <td height="35" colspan="10" align="center" bgcolor="#FFFFFF"></td>
                       </tr>
-						<form action="" method="post" name="b_search">
+						<form action="user" method="post" name="/Admin?cmd=user_list">
                       <tr>
                         <td colspan="7" align="center" bgcolor="#FFFFFF"><table width="610" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                               <td width=80% height="30" colspan="2" align="right">
 								<select name="search" class="textfield">
-									<option>제목</option>
+									<option value="name">이름</option>
+									<option value="userid">아이디</option>
+									<option value="tel">전화</option>
 								</select>
 								<input name="key" type="text" class="textfield" size="30"></td>
                               <td width=20% align="right"><b>[검색]</b>  &nbsp;<a href=""><b>[글쓰기]</b></a></td>

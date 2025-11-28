@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.ac.mnu.exsample.service.Action;
 
@@ -14,9 +15,13 @@ public class UserLogoutService implements Action {
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		RequestDispatcher rd = request.getRequestDispatcher("/");
-		rd.forward(request, response);
+		//세션확인
+		HttpSession session = request.getSession();
+		session.invalidate();//세션해제
+		//로그아웃
+		response.sendRedirect("/");
+		//RequestDispatcher rd = request.getRequestDispatcher("/");
+		//rd.forward(request, response);
 
 	}
 
